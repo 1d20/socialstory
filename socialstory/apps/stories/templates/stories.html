@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content  %}
+<div class="row">
+    <div class="col-lg-2">
+        {% include 'stories/left_menu.html' %}
+    </div>
+    <div class="col-lg-10">
+        {% include 'stories/top_menu.html' %}
+        <div class="fieldWrapper">
+            <div class="form-actions">
+                <table class="table table-striped">
+                    <th>Назва</th>
+                    <th>Автор</th>
+                    <th>Жанр</th>
+                    <th>Мова</th>
+                    <th>Рейтинг</th>
+                    {% for story in stories %}
+                    <tr>
+                       <td><a href="/stories/story/{{ story.id }}/">{{ story.title }}</a></td>
+                       <td><a href="/writer/{{ story.user_id }}/">{{ story.user }}</a></td>
+                        <td>{{ story.get_genge_display }}</td>
+                        <td>{{ story.get_language_display }}</td>
+                       <td>{{ story.rating }}({{ story.voteCount }})</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

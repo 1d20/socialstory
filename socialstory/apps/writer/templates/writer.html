@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+        {% if writer.user_id == user_id %}
+        <ul class="nav navbar-right">
+            <li><a href="/writer/edit/">Редагувати</a></li>
+          </ul>
+        {% endif %}
+        <div class="fieldWrapper">
+            <div class="col-lg-4">
+                <img src="{{ writer.picture.url }}" width="350" height="450" />
+            </div>
+            <div class="col-lg-3">
+                <p><b>{{ writer.user.username }}</b></p>
+                <p> Статус: {{ writer.status }} </p>
+                <p> Біографія: <br/> {{ writer.biography }} </p>
+            </div>
+        </div>
+{% endblock %}

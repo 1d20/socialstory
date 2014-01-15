@@ -1,0 +1,24 @@
+{% spaceless %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>{% block title %}Main -{% endblock %} SocialStory</title>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/navbar.css" rel="stylesheet">
+    {% block links %}{% endblock %}
+
+</head>
+
+<body>
+    <div class="container">
+        {% include 'menu.html' %}
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endspaceless %}

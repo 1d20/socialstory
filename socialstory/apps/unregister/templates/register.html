@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Авторизація</title>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/signin.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <legend>Реєстрація</legend>
+        <form method="post" action="/acc/register/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>{{ form.as_table }}</table>
+
+            <button class="btn btn-primary" type="submit">Реєстрація</button>
+        </form>
+ </div>
+</body>
+</html>

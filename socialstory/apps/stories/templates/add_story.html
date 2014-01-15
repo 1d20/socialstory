@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block links %}
+<link href="/static/bootstrap/css/custom.css" rel="stylesheet">
+{% endblock %}
+
+{% block content  %}
+<div class="row">
+    <div class="col-lg-2">
+        {% include 'stories/left_menu.html' %}
+    </div>
+    <div class="col-lg-10">
+        <form method="post" action="/stories/add/" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Нове оповідання</legend>
+                {% csrf_token %}
+                <div class="fieldWrapper">
+                    <div class="form-actions">
+                        <table>{{ form.as_table }}</table>
+                        <div class="controls">
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}
