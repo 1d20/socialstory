@@ -126,14 +126,18 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    #'django.contrib.staticfiles',
     'django.contrib.admin',
-    # 'django.contrib.admindocs',
+    'rest_framework',
 
     'apps.unregister',
     'apps.writer',
     'apps.stories',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGINATE_BY': 10
+}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../ditbog/ditbog/.idea/ditbog.iml" filepath="$PROJECT_DIR$/../../ditbog/ditbog/.idea/ditbog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../django_test/.idea/django_test.iml" filepath="$PROJECT_DIR$/../../django_test/.idea/django_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../findinshop/.idea/findinshop.iml" filepath="$PROJECT_DIR$/../../findinshop/.idea/findinshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../mindtask/.idea/mindtask.iml" filepath="$PROJECT_DIR$/../../mindtask/.idea/mindtask.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mindtask/.idea/mindtask.iml" filepath="$PROJECT_DIR$/../mindtask/.idea/mindtask.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/socialstory.iml" filepath="$PROJECT_DIR$/.idea/socialstory.iml" />
     </modules>

@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bdd98784-bced-4932-907d-4fd7a4216f4f" name="Default" comment="" />
+    <list default="true" id="bdd98784-bced-4932-907d-4fd7a4216f4f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/feedback.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/feedback_sent.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/index-old.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/item_page0.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/search.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/base.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/base.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/category.tree.inc.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/category.tree.inc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/fashion/index.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/fashion/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/index.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/item_page.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/item_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/news.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/news.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/page.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-about.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-about.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-home.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/testimonials.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/testimonials.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/source/urls.py" afterPath="$PROJECT_DIR$/../../findinshop/source/urls.py" />
+    </list>
     <ignored path="libwriter.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,107 +41,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mindtask/apps/users/urls.py">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="50" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/unregister/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="23" selection-start="1677" selection-end="1715" vertical-scroll-proportion="0.0" vertical-offset="479" max-vertical-offset="1155">
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mindtask/apps/users/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="7" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-              <folding>
-                <element signature="e#26#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="104" selection-start="963" selection-end="963" vertical-scroll-proportion="0.4357798" vertical-offset="0" max-vertical-offset="654">
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="1473" selection-end="1473" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="5" selection-start="692" selection-end="692" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/writer/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="30" selection-start="1629" selection-end="1667" vertical-scroll-proportion="0.0" vertical-offset="149" max-vertical-offset="825">
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="2" selection-start="216" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mindtask/source/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="50" selection-start="131" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mindtask/apps/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+            <state line="129" column="21" selection-start="4648" selection-end="4648" vertical-scroll-proportion="0.012875536" vertical-offset="1926" max-vertical-offset="2625">
               <folding />
             </state>
           </provider>
@@ -136,14 +57,17 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../findinshop" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/apps/stories/templates/story.html" />
-        <option value="$PROJECT_DIR$/apps/stories/urls.py" />
-        <option value="$PROJECT_DIR$/apps/stories/views.py" />
-        <option value="$PROJECT_DIR$/apps/stories/models.py" />
-        <option value="$PROJECT_DIR$/source/settings.py" />
         <option value="$PROJECT_DIR$/apps/writer/models.py" />
         <option value="$PROJECT_DIR$/../mindtask/source/wsgi.py" />
         <option value="$PROJECT_DIR$/../mindtask/manage.py" />
@@ -155,14 +79,17 @@
         <option value="$PROJECT_DIR$/../mindtask/apps/questions/models.py" />
         <option value="$PROJECT_DIR$/../mindtask/apps/questions/urls.py" />
         <option value="$PROJECT_DIR$/../mindtask/apps/questions/views.py" />
+        <option value="$PROJECT_DIR$/source/settings.py" />
+        <option value="$PROJECT_DIR$/source/urls.py" />
+        <option value="$PROJECT_DIR$/apps/restapi/configurations.py" />
+        <option value="$PROJECT_DIR$/apps/restapi/serializers.py" />
+        <option value="$PROJECT_DIR$/apps/restapi/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
-    <option name="y" value="22" />
-    <option name="width" value="1276" />
-    <option name="height" value="778" />
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -180,7 +107,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -234,38 +161,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stories" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -298,109 +193,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="writer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="writer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unregister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unregister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stories" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stories" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="restapi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,13 +204,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../findinshop" />
-    <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ditbog/ditbog" />
+    <property name="FullScreen" value="true" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -429,11 +222,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/restapi" />
       <recent name="$PROJECT_DIR$/../mindtask/apps" />
       <recent name="$PROJECT_DIR$/../mindtask/apps/users" />
       <recent name="$PROJECT_DIR$/../mindtask/apps/questions" />
       <recent name="$PROJECT_DIR$/apps/writer/templates" />
-      <recent name="$PROJECT_DIR$/apps/unregister/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
@@ -618,15 +411,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1276" height="778" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24764891" sideWeight="0.6712517" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.246875" sideWeight="0.6712517" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25139222" sideWeight="0.42735043" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -635,6 +427,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -647,77 +440,24 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/users/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="676">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="1" selection-start="4763" selection-end="4763" vertical-scroll-proportion="-18.115385" vertical-offset="1599" max-vertical-offset="2610">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="676">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/source/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/stories/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#326#1047#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/source/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="44" selection-start="4251" selection-end="4251" vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="2385">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="2" selection-start="216" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+        <state line="6" column="2" selection-start="216" selection-end="248" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="510">
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/source/urls.py">
+    <entry file="file://$PROJECT_DIR$/apps/stories/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="50" selection-start="131" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="676">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
           <folding />
         </state>
       </provider>
@@ -725,61 +465,114 @@
     <entry file="file://$PROJECT_DIR$/apps/writer/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="30" selection-start="1629" selection-end="1667" vertical-scroll-proportion="0.0" vertical-offset="149" max-vertical-offset="825">
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/unregister/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="23" selection-start="1677" selection-end="1715" vertical-scroll-proportion="0.0" vertical-offset="479" max-vertical-offset="1155">
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="5" selection-start="692" selection-end="692" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/users/urls.py">
+    <entry file="file://$PROJECT_DIR$/apps/stories/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="50" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+        <state line="24" column="0" selection-start="528" selection-end="1380" vertical-scroll-proportion="0.51502144" vertical-offset="0" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/writer/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="26" selection-start="451" selection-end="451" vertical-scroll-proportion="0.21459228" vertical-offset="0" max-vertical-offset="795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../django_test/rest/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/users/views.py">
+    <entry file="file://$PROJECT_DIR$/../../django_test/django_test/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="7" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <folding>
-            <element signature="e#26#37#0" expanded="true" />
-          </folding>
+        <state line="53" column="1" selection-start="1542" selection-end="1542" vertical-scroll-proportion="1.1373391" vertical-offset="0" max-vertical-offset="1455">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/urls.py">
+    <entry file="file://$PROJECT_DIR$/source/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="1473" selection-end="1473" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+        <state line="4" column="46" selection-start="207" selection-end="207" vertical-scroll-proportion="0.08583691" vertical-offset="0" max-vertical-offset="699">
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../mindtask/apps/questions/views.py">
+    <entry file="file://$PROJECT_DIR$/../../django_test/django_test/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="104" selection-start="963" selection-end="963" vertical-scroll-proportion="0.4357798" vertical-offset="0" max-vertical-offset="654">
+        <state line="14" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="0.3004292" vertical-offset="0" max-vertical-offset="699">
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../django_test/django_test/rest_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.1502146" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/restapi/configurations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="32" selection-start="207" selection-end="207" vertical-scroll-proportion="0.12875536" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/restapi/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="41" selection-start="602" selection-end="602" vertical-scroll-proportion="0.3004292" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/restapi/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="43" selection-start="277" selection-end="277" vertical-scroll-proportion="0.1502146" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../django_test/rest/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="39" selection-start="239" selection-end="239" vertical-scroll-proportion="0.1502146" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="21" selection-start="4648" selection-end="4648" vertical-scroll-proportion="0.012875536" vertical-offset="1926" max-vertical-offset="2625">
+          <folding />
         </state>
       </provider>
     </entry>
