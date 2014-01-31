@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'rest_framework',
+    'south',
 
     'apps.unregister',
     'apps.writer',

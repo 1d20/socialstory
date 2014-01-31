@@ -21,8 +21,8 @@
                     <tr>
                        <td><a href="/stories/story/{{ story.id }}/">{{ story.title }}</a></td>
                        <td><a href="/writer/{{ story.user_id }}/">{{ story.user }}</a></td>
-                        <td>{{ story.get_genge_display }}</td>
-                        <td>{{ story.get_language_display }}</td>
+                        <td>TEMP_GENRE</td>
+                        <td>{{ story.language.language }}</td>
                        <td>{{ story.rating }}({{ story.voteCount }})</td>
                     </tr>
                     {% endfor %}

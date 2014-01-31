@@ -9,6 +9,19 @@
 3. REST Framework
 	pip install djangorestframework
 	P.S. sudo apt-get install python-pip
+4. Migrations
+	Потрібна штука, яка називається South(вона по-ідеї йде стандартно). Якщо ні:
+	pip install south
+!!!!УВАГА!!!!
+Стандартна ОРМ не дуже зручна, і в ній немає частини функціоналу. Тому переходимо на South. в основному це не страшно, тільки дозволить міняти структуру бд в одну команду) Правда є один ньюанс - треба перестворити базу даних(теоретично дані можна зберегти, але це трохи геморно). Короче, алгоритм наступний:
+	Видаляємо БД вручну
+	Пишемо наступні команди по-черзі:
+	python manage.py syncdb
+	python manage.py migrate stories
+	python manage.py migrate writer
+Для загрузки тестових даних в базу:
+	python manage.py loaddata ss.json
+	python manage.py loaddata ss2.json
 
 3.1. Користування API
 3.1.1. Через браузер

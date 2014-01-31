@@ -14,6 +14,3 @@ class WriterForm(ModelForm):
     def save(self, *args, **kwargs):
         self.instance.user_id = self.user.id
         self.instance.save()
-    #def save(self, *args, **kwargs):
-    #    self.instance.user_id = self.user.id
-    #    self.instance.save()

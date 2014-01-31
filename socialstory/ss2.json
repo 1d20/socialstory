@@ -1,0 +1,32 @@
+[
+    {
+        "pk": 1,
+        "model": "stories.story",
+        "fields": {
+            "date_add": "2014-01-31T10:10:08.227Z",
+            "rating": 3,
+            "story": "stories/\u041f\u0430\u0442\u0440\u0456\u043a_\u0417\u044e\u0441\u043a\u0456\u043d\u0434_\u0422\u044f\u0433\u0430_\u043a_\u0433\u043b\u0443\u0431\u0438\u043d\u0435.doc",
+            "description": "Description \u043d\u043e\u043c\u0435\u0440 1",
+            "language": 1,
+            "title": "Title 1",
+            "poster": "posters/default.jpg",
+            "voteCount": 1,
+            "user": 2,
+            "pages": 0
+        }
+    },
+    {
+        "pk": 1,
+        "model": "stories.language",
+        "fields": {
+            "language": "UKR"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "stories.language",
+        "fields": {
+            "language": "ENG"
+        }
+    }
+]

@@ -24,8 +24,8 @@
             <div class="col-lg-2">
                 <div class="fieldWrapper">
                     <p> Автор:              <a href="/writer/{{ story.user_id }}/">{{ story.user }}</a> </p>
-                    <p> Жанр:               {{ story.get_genge_display }} </p>
-                    <p> Мова:               {{ story.get_language_display }} </p>
+                    <p> Жанр:               TEMP_GENRE </p>
+                    <p> Мова:               {{ story.language.language }} </p>
                     <p> Рейтинг:            {{ story.rating }} </p>
                     <p> Кількість голосів:  {{ story.voteCount }}
                     {% if vote %}<br/>

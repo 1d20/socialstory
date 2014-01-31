@@ -2,44 +2,37 @@
 from django.db import models
 
 class Story(models.Model):
-    GENGES = (
-        (1,u'Кіберпанк'),
-        (2,u'Містика'),
-        (3,u'Історія'),
-        (4,u'Фантастика'),
-        (5,u'Класика'),
-        (6,u'Бойовик'),
-        (7,u'Новела'),
-        (8,u'Поезія'),
-        (9,u'Детектив'),
-        (10,u'Любовний роман'),
-        (11,u'Наука'),
-    )
-    LANGUAGES = (
-        (1,u'Українська'),
-        (2,u'Російська'),
-        (3,u'Англійська'),
-        (4,u'Есперанто'),
-        (5,u'Латинь'),
-    )
     user = models.ForeignKey('auth.User', related_name='story_user')
+    language = models.ForeignKey('stories.Language', related_name='story_language')
     title = models.CharField(max_length=255)
     story = models.FileField(upload_to='stories', default='stories/default.txt')
-    #from time import time
-    #def someFunc(instance, filename):
-    #    return "upload_files/%s_%s" % (str(time()).replace('.','_'), filename)
-    # story = models.FileField(upload_to=someFunc)
     poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
     description = models.TextField()
     rating = models.IntegerField(default=0)
     voteCount = models.IntegerField(default=0)
     pages = models.IntegerField(default=0)
-    genge = models.IntegerField(max_length=2, choices=GENGES)
-    language = models.IntegerField(max_length=2, choices=LANGUAGES)
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
 
-    def __unicode__(self):
-        return u'%s: %s' % (self.user, self.title)
+class Genre(models.Model):
+    title = models.CharField(max_length=255,default='')
 
-    class Meta:
-        unique_together = ('user', 'title')
+class SubGenre(models.Model):
+    title = models.CharField(max_length=255,default='')
+    genre = models.ForeignKey('stories.Genre', related_name='genre_subgenre')
+
+class StoryGenre(models.Model):
+    setting = models.ForeignKey('stories.Story', related_name='storygenre_story')
+    subgenre = models.ForeignKey('stories.SubGenre', related_name='storygenre_subgenre')
+
+class Language(models.Model):
+    language = models.CharField(max_length=255,default='')
+
+class SimilarStory(models.Model):
+    story1 = models.ForeignKey('stories.Story', related_name='similar_story_1')
+    story2 = models.ForeignKey('stories.Story', related_name='similar_story_2')
+    count = models.IntegerField(max_length=10,default=0)
+
+class Versions(models.Model):
+    story = models.ForeignKey('stories.Story', related_name='story_version')
+    path = models.FileField(upload_to='versions',default='default')
+    date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)

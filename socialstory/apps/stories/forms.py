@@ -17,7 +17,7 @@ class StoryForm(ModelForm):
         model = StoryModel
         exclude = ('user', )
         #fields='__all__'
-        fields = ['title', 'story', 'description', 'genge', 'language', 'poster']
+        fields = ['title', 'story', 'description', 'language', 'poster']
     def save(self, story_id=0, *args, **kwargs):
         self.instance.user_id = self.user.id
         if story_id != 0:
