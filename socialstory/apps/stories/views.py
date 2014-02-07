@@ -1,32 +1,43 @@
 #-*- coding:utf-8 -*-
-import json
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
 from forms import StoryForm
-from models import Story
+from models import Story, SubGenre
 from apps.writer.models import WriterVote, WriterFavorite, WriterRead
+from django.core.context_processors import csrf
+from utils.decorators import render_to
 
-def render_to(template_path, allow_ajax=False):
-    def decorator(func):
-        def wrapper(request, *args, **kwargs):
-            output = func(request, *args, **kwargs)
-            if not isinstance(output, dict):
-                return output
-            kwargs = {'context_instance': RequestContext(request)}
 
-            if allow_ajax and request.is_ajax():
-                return HttpResponse(json.dumps(output), 'application/json')
+def get_subgenres(selected_genres=''):
+    selSG = []
+    if not selected_genres:
+        allSG = SubGenre.objects.order_by('genre')
+    else:
+        selSG = selected_genres.split(',')[:-1]
+        allSG = SubGenre.objects.order_by('genre').exclude(id__in=selSG)
+        selSG = SubGenre.objects.filter(id__in=selSG).order_by('genre').all()
+    return { 'subgenres': allSG, 'selected_subgenres': selSG }
 
-            if 'MIME_TYPE' in output:
-                kwargs['mimetype'] = output.pop('MIME_TYPE')
-            template = template_path
-            if 'TEMPLATE' in output:
-                template = output.pop('TEMPLATE')
-            return render_to_response(template, output, **kwargs)
-        return wrapper
-    return decorator
+def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add'):
+    stories = []
+    selSG = []
+    if not selected_genres:
+        allSG = SubGenre.objects.order_by('genre')
+        stories = Story.objects.filter().order_by(sorted_by)
+    else:
+        selSG = selected_genres.split(',')[:-1]
+        allSG = SubGenre.objects.order_by('genre').exclude(id__in=selSG)
+        selSG = SubGenre.objects.filter(id__in=selSG).order_by('genre').all()
+        local_stories = []
+        for ssg in selSG:
+            for le in list(ssg.story_subgenre.all()):
+                local_stories.append(le)
+        for ls in local_stories:
+            if ls not in stories:
+                stories.append(ls)
+        stories = sorted(stories, key=lambda stories: stories.date_add)
+        stories = list(reversed(stories))
+    return { 'subgenres': allSG, 'selected_subgenres': selSG, 'stories': stories }
 
 @login_required
 @render_to('stories.html')
@@ -36,12 +47,18 @@ def my_stories(request):
 @login_required
 @render_to('stories.html')
 def all_stories(request):
-    return {'stories':Story.objects.filter().order_by('-date_add'), 'title':'Нові оповідання'}
+    res = {'title':'Нові оповідання'}
+    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-date_add'))
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('stories.html')
 def best_stories(request):
-    return {'stories':Story.objects.filter().order_by('-rating'), 'title':'Кращі оповідання'}
+    res = {'title':'Кращі оповідання', 'request':request}
+    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-rating'))
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('stories.html')
@@ -77,12 +94,16 @@ def add_story(request):
     if request.method == 'POST':
         form = StoryForm(request.user,request.POST, request.FILES)
         if form.is_valid():
-            form.save() #commit=False
+            form.setUserId(request.user.id)
+            form.save()
             return HttpResponseRedirect('/stories/my/')
     else:
-        #form = StoryForm(request.user,instance=Story.objects.get(id=1))
         form = StoryForm(request.user)
-    return { 'form': form, }
+
+    res = { 'form': form, 'title':'Додати оповідання'}
+    res.update(get_subgenres(request.POST.get('genres')))
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('edit_story.html')
@@ -93,25 +114,32 @@ def edit_story(request, story_id=0):
         if form.is_valid():
             if instance.user_id != request.user.id:
                 return HttpResponseRedirect('/stories/my/')
-            form.save(story_id=story_id)
+            form.setStoryData(story_id)
+            form.setUserId(request.user.id)
+            form.save()
             return HttpResponseRedirect('/stories/story/'+str(story_id))
     else:
         if instance.user_id == request.user.id:
             form = StoryForm(request.user,instance=instance)
         else:
             return HttpResponseRedirect('/stories/my/')
-
-    return { 'form': form,'story_id': instance.id, 'title':instance.title}
+    res = { 'form': form, 'story_id': instance.id, 'title':instance.title}
+    res.update(get_subgenres(request.POST.get('genres')))
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('story.html')
 def story(request, story_id=0):
     if not len(WriterRead.objects.filter(user_id=request.user.id,story_id=story_id)):
             WriterRead.objects.create(user_id=request.user.id,story_id=story_id)
-    return {'story':Story.objects.filter(id = story_id)[0],
+    res = {'story':Story.objects.filter(id = story_id)[0],
              'vote':not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)),
              'favorite':not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)),
              'my_story':len(Story.objects.filter(user_id=request.user.id,id=story_id))}
+    res.update(get_subgenres(request.POST.get('genres')))
+    res.update(csrf(request))
+    return res
 
 @login_required
 def vote_story(request, story_id, vote_count):

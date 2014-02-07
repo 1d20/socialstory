@@ -1,12 +1,20 @@
 <div class="nav nav-list">
-<li class="nav-header">Мої</li>
-    <li><a href="/stories/my/">Мої оповідання</a></li>
-    <li><a href="/stories/favorites/">Вибрані</a></li>
-    <li><a href="/stories/reads/">Перегрянуті</a></li>
-    <li><a href="/stories/votes/">Проголосовані</a></li>
-    <li class="nav-header">Всі</li>
-    <li><a href="/stories/all/">Нові</a></li>
-    <li><a href="/stories/best/">Кращі</a></li>
-    <li><a href="#">По жанрах</a></li>
-    <li><a href="#">Певною мовою</a></li>
+    <ul class="list-group">
+        {% regroup subgenres by genre.title as genres %}
+        {% for genre in genres %}
+            <li class="list-group-item">{{ genre.grouper }}</li>
+            {% for subgenre in genre.list %}
+                <form action="/stories/all/"  method="post" >
+                {% csrf_token %}
+                    <ul class="">
+                        <li class="list-group-item">
+                            <input type="hidden" name="genres" value=
+                                    "{{ subgenre.id }},{% for ssg in selected_subgenres %}{{ ssg.id }},{% endfor %}"/>
+                            <input type="submit" class="btn btn-link" value="{{ subgenre.title }}"/>
+                        </li>
+                    </ul>
+                </form>
+            {% endfor %}
+        {% endfor %}
+    </ul>
 </div>

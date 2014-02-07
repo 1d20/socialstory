@@ -24,7 +24,7 @@
             <div class="col-lg-2">
                 <div class="fieldWrapper">
                     <p> Автор:              <a href="/writer/{{ story.user_id }}/">{{ story.user }}</a> </p>
-                    <p> Жанр:               TEMP_GENRE </p>
+                    <p> Жанр:               {{ story.genres.all|join:', ' }}</p>
                     <p> Мова:               {{ story.language.language }} </p>
                     <p> Рейтинг:            {{ story.rating }} </p>
                     <p> Кількість голосів:  {{ story.voteCount }}
