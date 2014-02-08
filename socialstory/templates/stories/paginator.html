@@ -1,0 +1,37 @@
+<ul class="pagination pagination-large">
+    {% if stories.has_previous %}
+    <li>
+        <span>
+            <form class="form-inline" role="form" action="/stories/all/"  method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="genres" value=
+    "{% for ssg in selected_subgenres %}{{ ssg.id }},{% endfor %}"/>
+                <input type="hidden" name="page" value="{{ stories.previous_page_number }}"/>
+                <button type="submit" class="btn btn-link" aria-hidden="true">previous</button>
+            </form>
+        </span>
+    </li>
+    {% endif %}
+
+    <li>
+        <span>
+            <button type="button" class="btn btn-link" aria-hidden="true"
+                    >{{ stories.number }} з {{ stories.paginator.num_pages }}</button>
+
+        </span>
+    </li>
+
+    {% if stories.has_next %}
+    <li>
+        <span>
+            <form class="form-inline" role="form" action="/stories/all/"  method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="genres" value=
+    "{% for ssg in selected_subgenres %}{{ ssg.id }},{% endfor %}"/>
+                <input type="hidden" name="page" value="{{ stories.next_page_number }}"/>
+                <button type="submit" class="btn btn-link" aria-hidden="true">next</button>
+            </form>
+        </span>
+    </li>
+    {% endif %}
+</ul>

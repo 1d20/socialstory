@@ -1,0 +1,13 @@
+{% for p in friends %}
+    <table class="table">
+        <div class="col-lg-2">
+            <img src="{{ p.picture.url }}" width="105" height="135" />
+        </div>
+        <div class="col-lg-10">
+            <p><a href="/writer/{{ p.user.id }}/">{{ p.user }}</a></p>
+            <p> Статус: {{ p.status }} </p>
+            <p><a href="#">Написати повідомлення</a></p>
+            <p><a href="/people/friend/delete/{{ p.user.id }}/">Видалити</a></p>
+        </div>
+    </table>
+{% endfor %}

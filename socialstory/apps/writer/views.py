@@ -1,11 +1,9 @@
-import json
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from apps.writer.models import Writer
 from apps.writer.forms import WriterForm
 from django.core.context_processors import csrf
 from utils.decorators import render_to
-
 
 @login_required
 def index(request):

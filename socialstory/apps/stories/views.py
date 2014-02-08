@@ -6,6 +6,7 @@ from models import Story, SubGenre
 from apps.writer.models import WriterVote, WriterFavorite, WriterRead
 from django.core.context_processors import csrf
 from utils.decorators import render_to
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def get_subgenres(selected_genres=''):
@@ -18,7 +19,7 @@ def get_subgenres(selected_genres=''):
         selSG = SubGenre.objects.filter(id__in=selSG).order_by('genre').all()
     return { 'subgenres': allSG, 'selected_subgenres': selSG }
 
-def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add'):
+def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=None):
     stories = []
     selSG = []
     if not selected_genres:
@@ -37,7 +38,15 @@ def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add'):
                 stories.append(ls)
         stories = sorted(stories, key=lambda stories: stories.date_add)
         stories = list(reversed(stories))
-    return { 'subgenres': allSG, 'selected_subgenres': selSG, 'stories': stories }
+
+    paginator = Paginator(stories, 10)
+    try:
+        stories_list = paginator.page(page)
+    except PageNotAnInteger:
+        stories_list = paginator.page(1)
+    except EmptyPage:
+        stories_list = paginator.page(paginator.num_pages)
+    return { 'subgenres': allSG, 'selected_subgenres': selSG, 'stories': stories_list }
 
 @login_required
 @render_to('stories.html')
@@ -48,7 +57,7 @@ def my_stories(request):
 @render_to('stories.html')
 def all_stories(request):
     res = {'title':'Нові оповідання'}
-    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-date_add'))
+    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-date_add', request.POST.get('page')))
     res.update(csrf(request))
     return res
 
@@ -56,7 +65,7 @@ def all_stories(request):
 @render_to('stories.html')
 def best_stories(request):
     res = {'title':'Кращі оповідання', 'request':request}
-    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-rating'))
+    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-rating', request.POST.get('page')))
     res.update(csrf(request))
     return res
 
@@ -86,7 +95,7 @@ def reads(request, user_id = 0):
 
 @login_required
 def main(request):
-    return HttpResponseRedirect('/stories/my/')
+    return HttpResponseRedirect('/stories/all/')
 
 @login_required
 @render_to('add_story.html')
@@ -96,7 +105,7 @@ def add_story(request):
         if form.is_valid():
             form.setUserId(request.user.id)
             form.save()
-            return HttpResponseRedirect('/stories/my/')
+            return HttpResponseRedirect('/stories/all/')
     else:
         form = StoryForm(request.user)
 
@@ -113,7 +122,7 @@ def edit_story(request, story_id=0):
         form = StoryForm(request.user,request.POST, request.FILES)
         if form.is_valid():
             if instance.user_id != request.user.id:
-                return HttpResponseRedirect('/stories/my/')
+                return HttpResponseRedirect('/stories/all/')
             form.setStoryData(story_id)
             form.setUserId(request.user.id)
             form.save()
@@ -122,7 +131,7 @@ def edit_story(request, story_id=0):
         if instance.user_id == request.user.id:
             form = StoryForm(request.user,instance=instance)
         else:
-            return HttpResponseRedirect('/stories/my/')
+            return HttpResponseRedirect('/stories/all/')
     res = { 'form': form, 'story_id': instance.id, 'title':instance.title}
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))

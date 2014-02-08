@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'apps.unregister',
     'apps.writer',
     'apps.stories',
+    'apps.people',
 )
 
 REST_FRAMEWORK = {

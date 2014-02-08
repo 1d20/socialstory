@@ -1,0 +1,28 @@
+<h3>Чужі заявки:</h3><br/>
+{% for p in people_from %}
+    <table class="table">
+        <div class="col-lg-2">
+            <img src="{{ p.picture.url }}" width="105" height="135" />
+        </div>
+        <div class="col-lg-10">
+            <p><a href="/writer/{{ p.user.id }}/">{{ p.user }}</a></p>
+            <p> Статус: {{ p.status }} </p>
+            <p><a href="/people/friend/add/{{ p.user.id }}/">Прийняти</a></p>
+            <p><a href="/people/request/delete/{{ p.user.id }}/">Відхилити</a></p>
+        </div>
+    </table>
+{% endfor %}
+
+<h3>Ваші заявки:</h3><br/>
+{% for p in people_to %}
+    <table class="table">
+        <div class="col-lg-2">
+            <img src="{{ p.picture.url }}" width="105" height="135" />
+        </div>
+        <div class="col-lg-10">
+            <p><a href="/writer/{{ p.user.id }}/">{{ p.user }}</a></p>
+            <p> Статус: {{ p.status }} </p>
+            <p><a href="/people/request/delete/{{ p.user.id }}/">Відмінити заявку</a></p>
+        </div>
+    </table>
+{% endfor %}
