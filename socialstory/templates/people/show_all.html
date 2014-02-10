@@ -6,6 +6,7 @@
         <div class="col-lg-10">
             <p><a href="/writer/{{ p.user.id }}/">{{ p.user }}</a></p>
             <p> Статус: {{ p.status }} </p>
+            <p><a href="/message/write/{{ p.user.id }}">Написати повідомлення</a></p>
             <p><a href="/people/request/add/{{ p.user.id }}/">Запит на дружбу</a></p>
         </div>
     </table>

@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'apps.writer',
     'apps.stories',
     'apps.people',
+    'apps.messages',
 )
 
 REST_FRAMEWORK = {

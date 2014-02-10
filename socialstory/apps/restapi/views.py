@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from apps.writer import models as WriterModel
 from apps.stories import models as StoryModel
 from apps.people import models as PeopleModel
+from apps.messages import models as MessageModel
 from rest_framework import viewsets
 import serializers
 
@@ -53,10 +54,6 @@ class WriterReadViewSet(viewsets.ModelViewSet):
     queryset = WriterModel.WriterRead.objects.all()
     serializer_class = serializers.WriterReadSerializer
 
-class MessagesViewSet(viewsets.ModelViewSet):
-    queryset = WriterModel.Messages.objects.all()
-    serializer_class = serializers.MessagesSerializer
-
 class SettingViewSet(viewsets.ModelViewSet):
     queryset = WriterModel.Setting.objects.all()
     serializer_class = serializers.SettingSerializer
@@ -76,3 +73,7 @@ class FriendsViewSet(viewsets.ModelViewSet):
 class FriendsRequestsViewSet(viewsets.ModelViewSet):
     queryset = PeopleModel.FriendsRequests.objects.all()
     serializer_class = serializers.FriendsRequestsSerializer
+
+class MessagesViewSet(viewsets.ModelViewSet):
+    queryset = MessageModel.Messages.objects.all()
+    serializer_class = serializers.MessagesSerializer

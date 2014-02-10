@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from apps.writer import models as WriterModel
 from apps.stories import models as StoryModel
 from apps.people import models as PeopleModel
+from apps.messages import models as MessagesModel
 from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -66,11 +67,6 @@ class WriterReadSerializer(serializers.HyperlinkedModelSerializer):
         model = WriterModel.WriterRead
         fields = ('id', 'user', 'story')
 
-class MessagesSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = WriterModel.Messages
-        fields = ('id', 'user_from', 'user_to', 'content', 'is_write', 'date_add')
-
 class SettingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = WriterModel.Setting
@@ -95,3 +91,8 @@ class FriendsRequestsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PeopleModel.FriendsRequests
         fields = ('id', 'user_from', 'user_to')
+
+class MessagesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = MessagesModel.Messages
+        fields = ('id', 'user_from', 'user_to', 'title', 'content', 'is_write', 'date_add')

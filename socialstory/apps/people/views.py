@@ -20,7 +20,7 @@ def friend_all(request):
     friends = list(set(requests_user_friend1))
     for u in requests_user_friend2:
         friends.append(u)
-    return { 'title': 'Друзі', 'show_path': 'people/show_friends.html',
+    return { 'title': 'Друзі', 'show_path': 'people/show_friends.html', 'active_page': 'friend_all',
              'friends': friends }
 
 @login_required
@@ -31,6 +31,7 @@ def request_all(request):
     people_to = map(lambda u: u.user_to.writer, people_to)
     people_from = map(lambda u: u.user_from.writer, people_from)
     return { 'title': 'Заявки', 'show_path': 'people/show_request.html',
+             'active_page': 'request_all',
              'people_to': people_to,
              'people_from': people_from }
 
@@ -50,7 +51,8 @@ def all(request):
     another_users = Writer.objects.exclude(user=request.user).exclude(user__in=requests_user_to)\
         .exclude(user__in=requests_user_from).exclude(user__in=requests_user_friend1)\
         .exclude(user__in=requests_user_friend2).all()
-    return { 'title': 'Всі', 'people': another_users, 'show_path': 'people/show_all.html' }
+    return { 'title': 'Всі', 'people': another_users, 'show_path': 'people/show_all.html',
+             'active_page': 'all' }
 
 @login_required
 def request(request, action, user_to_id):

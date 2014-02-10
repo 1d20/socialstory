@@ -7,6 +7,7 @@
         <div class="col-lg-10">
             <p><a href="/writer/{{ p.user.id }}/">{{ p.user }}</a></p>
             <p> Статус: {{ p.status }} </p>
+            <p><a href="/message/write/{{ p.user.id }}">Написати повідомлення</a></p>
             <p><a href="/people/friend/add/{{ p.user.id }}/">Прийняти</a></p>
             <p><a href="/people/request/delete/{{ p.user.id }}/">Відхилити</a></p>
         </div>
@@ -22,6 +23,7 @@
         <div class="col-lg-10">
             <p><a href="/writer/{{ p.user.id }}/">{{ p.user }}</a></p>
             <p> Статус: {{ p.status }} </p>
+            <p><a href="/message/write/{{ p.user.id }}">Написати повідомлення</a></p>
             <p><a href="/people/request/delete/{{ p.user.id }}/">Відмінити заявку</a></p>
         </div>
     </table>

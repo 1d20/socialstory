@@ -1,5 +1,5 @@
 <div class="nav nav-list">
-<li><a href="/people/friend/all/">Друзі</a></li>
-<li><a href="/people/request/all/">Заявки</a></li>
-<li><a href="/people/all/">Всі</a></li>
+<li class="{% if active_page == 'friend_all' %}dropdown-header{% endif %}"><a href="/people/friend/all/">Друзі</a></li>
+<li class="{% if active_page == 'request_all' %}dropdown-header{% endif %}"><a href="/people/request/all/">Заявки</a></li>
+<li class="{% if active_page == 'all' %}dropdown-header{% endif %}"><a href="/people/all/">Всі</a></li>
 </div>

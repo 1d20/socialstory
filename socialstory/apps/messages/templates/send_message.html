@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <br/>
+            <table class="table">
+                <div class="col-lg-2">
+                    <img src="{{ user.writer.picture.url }}" width="105" height="135" />
+                </div>
+                <div class="col-lg-10">
+                <form action="/message/send/{{ user.id }}/"  method="post" >
+                    {% csrf_token %}
+                    <p><a href="#">{{ user }}</a></p>
+                    <p><input class="xlarge" name="title" size="30" type="text"></p>
+                    <p><textarea class="xxlarge" name="content" rows="3"></textarea></p>
+                    <p><input type="submit" class="btn" value="Відправити"/></p>
+                </form>
+                </div>
+            </table>
+    </div>
+
+    <div class="col-lg-12">
+        <br/>
+        {% for message in messages %}
+        <table class="table">
+            <div class="col-lg-2">
+                <img src="{{ message.user_from.writer.picture.url }}" width="105" height="135" />
+            </div>
+            <div class="col-lg-10">
+                <p><a href="/writer/{{ message.user_from.id }}/">{{ message.user_from }}</a></p>
+                <p><b>{{ message.title }}</b> ({{ message.date_add }})</p>
+                <p>{{ message.content }}</p>
+            </div>
+        </table>
+        {% endfor %}
+    </div>
+{% endblock %}
