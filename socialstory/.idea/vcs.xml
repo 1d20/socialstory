@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
     <mapping directory="$PROJECT_DIR$/../../findinshop" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango" vcs="Git" />
   </component>
 </project>
 

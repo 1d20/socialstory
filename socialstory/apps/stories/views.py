@@ -6,6 +6,7 @@ from models import Story, SubGenre
 from apps.writer.models import WriterVote, WriterFavorite, WriterRead
 from django.core.context_processors import csrf
 from utils.decorators import render_to
+from utils.filefield import get_txt_content, create_txt_file, rewrite_txt_content
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -52,6 +53,29 @@ def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=No
 @render_to('stories.html')
 def my_stories(request):
     return {'stories':Story.objects.filter(user_id = request.user.id), 'title':'Мої оповідання'}
+
+@login_required
+@render_to('reader.html')
+def read(request, story_id=0):
+    story = Story.objects.get(id = story_id)
+    content = get_txt_content(story.story.url)
+    #print content
+    return {'content': content}
+
+@login_required
+@render_to('editor.html')
+def editor(request, story_id=0):######################### If it is writer story
+    story = Story.objects.get(id = story_id)
+    if story.user != request.user:
+        return HttpResponseRedirect('/stories/all/')
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        print request.POST
+        rewrite_txt_content(story.story.url, content)
+    content = get_txt_content(story.story.url)
+    res = {'content': content, 'story': story}
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('stories.html')
@@ -105,7 +129,12 @@ def add_story(request):
         if form.is_valid():
             form.setUserId(request.user.id)
             form.save()
-            return HttpResponseRedirect('/stories/all/')
+            id = str(form.instance.id)
+            if form.instance.story == 'stories/default.txt':
+                form.instance.story = create_txt_file(form.instance.story, id)
+                print form.instance.story
+                form.save()
+            return HttpResponseRedirect('/stories/editor/'+id+'/')
     else:
         form = StoryForm(request.user)
 

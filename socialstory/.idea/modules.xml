@@ -5,9 +5,12 @@
       <module fileurl="file://$PROJECT_DIR$/../../ditbog/ditbog/.idea/ditbog.iml" filepath="$PROJECT_DIR$/../../ditbog/ditbog/.idea/ditbog.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../django_test/.idea/django_test.iml" filepath="$PROJECT_DIR$/../../django_test/.idea/django_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../findinshop/.idea/findinshop.iml" filepath="$PROJECT_DIR$/../../findinshop/.idea/findinshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/.idea/hellodjango.iml" filepath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/.idea/hellodjango.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../mindtask/.idea/mindtask.iml" filepath="$PROJECT_DIR$/../../mindtask/.idea/mindtask.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mindtask/.idea/mindtask.iml" filepath="$PROJECT_DIR$/../mindtask/.idea/mindtask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../psa_admin/.idea/psa_admin.iml" filepath="$PROJECT_DIR$/../../psa_admin/.idea/psa_admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/socialstory.iml" filepath="$PROJECT_DIR$/.idea/socialstory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../wol/wol/.idea/wol.iml" filepath="$PROJECT_DIR$/../../wol/wol/.idea/wol.iml" />
     </modules>
   </component>
 </project>

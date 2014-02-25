@@ -9,6 +9,9 @@
     <orderEntry type="module" module-name="django_test" />
     <orderEntry type="module" module-name="findinshop" />
     <orderEntry type="module" module-name="ditbog" />
+    <orderEntry type="module" module-name="psa_admin" />
+    <orderEntry type="module" module-name="wol" />
+    <orderEntry type="module" module-name="hellodjango" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="myDocStringFormat" value="Plain" />

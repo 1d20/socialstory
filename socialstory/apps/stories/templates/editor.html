@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+    {% block title %}{{ story.title }}{% endblock %}
+    {% block links %}
+        <link rel="stylesheet" href="/static/medium/css/main.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="/static/medium/css/medium-editor.css">
+        <link rel="stylesheet" href="/static/medium/css/themes/flat.css">
+        <script src="/static/medium/js/medium-editor.js"></script>
+    {% endblock %}
+
+{% block content  %}
+<div id="container">
+    <form class="form-inline" role="form" id="submit" action="/stories/editor/{{ story.id }}/"  method="post" >
+        {% csrf_token %}
+        <h1>{{ story.title }}
+            <button type="submit" aria-hidden="true" >Save</button>
+        </h1>
+        <div class="editable" id="content" name="content">{{ content|safe }}</div>
+    </form>
+</div>
+
+<script>
+
+var editor = new MediumEditor('.editable', {
+    //anchorInputPlaceholder: 'Начните писать свою историю!',
+    buttons: ['bold', 'italic', 'underline', 'quote', 'header1', 'pre'],
+    buttonLabels: 'fontawesome',
+    // diffLeft: 25,
+    // diffTop: 10,
+    firstHeader: 'h1',
+    secondHeader: 'h2',
+    // delay: 300,
+    // targetBlank: true
+    placeholder: 'Начните писать свою историю!'
+});
+
+var submit = document.getElementById('submit');
+submit.onsubmit = function() {
+    var data;
+    if (editor.serialize()['content'])
+        data = editor.serialize()['content'].value;
+    else
+        editor.serialize()[0].value;
+    var input = document.createElement('input');
+    submit.appendChild(input);
+    input.name = 'content';
+    input.value = data;
+    this.submit();
+}
+
+</script>
+{% endblock %}

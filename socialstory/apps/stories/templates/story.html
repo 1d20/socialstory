@@ -15,6 +15,7 @@
                 {% endif %}
                 {% if my_story %}
                     (<a href="/stories/edit/{{ story.id }}/">Редагувати</a>)
+                    (<a href="/stories/editor/{{ story.id }}/">Редагувати текст</a>)
                 {% endif %}
             </legend>
         </div>
@@ -36,7 +37,7 @@
                         <a href="/stories/vote/{{ story.id }}/5/">5 </a>)
                     {% endif %}                                             </p>
                     <p> Кількість сторінок: {{ story.pages }} </p>
-                    <p> <a href="{{ story.story.url }}">Переглянути текст файлу</a> </p>
+                    <p> <a href="/stories/read/{{ story.id }}/">Переглянути текст файлу</a> </p>
                 </div>
             </div>
             <div class="col-lg-6">
