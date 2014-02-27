@@ -14,7 +14,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/temp_images/7.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/temp_images/8.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/temp_images/9.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/db.sqlite3" afterPath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/base.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/base.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/category.tree.inc.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/category.tree.inc.html" />
@@ -25,10 +24,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/page.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/page.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-about.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-about.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-home.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/pop-up-home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/settings.py" afterPath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/testimonials.html" afterPath="$PROJECT_DIR$/../../findinshop/templates/themes/osterio/testimonials.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../findinshop/source/urls.py" afterPath="$PROJECT_DIR$/../../findinshop/source/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py" afterPath="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py" />
     </list>
     <ignored path="libwriter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,73 +48,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/apps/gettest/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="24" selection-start="2816" selection-end="2816" vertical-scroll-proportion="-51.25" vertical-offset="180" max-vertical-offset="1545">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.min.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/bootstrap.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="17618" selection-start="17780" selection-end="17780" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/core/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="90" selection-end="90" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="font-awesome.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/fonts/font-awesome.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="36" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25575">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="331" column="32" selection-start="6253" selection-end="6253" vertical-scroll-proportion="0.0" vertical-offset="4701" max-vertical-offset="6480">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="31" selection-start="341" selection-end="391" vertical-scroll-proportion="-7.2" vertical-offset="0" max-vertical-offset="375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/settings.py">
+        <entry file="file://$PROJECT_DIR$/source/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="49" selection-start="2197" selection-end="2197" vertical-scroll-proportion="0.47004607" vertical-offset="1059" max-vertical-offset="1710">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tester.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/core/tester.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="411" column="1" selection-start="12081" selection-end="12081" vertical-scroll-proportion="0.0" vertical-offset="5509" max-vertical-offset="6255">
+            <state line="129" column="21" selection-start="4648" selection-end="4648" vertical-scroll-proportion="0.3323442" vertical-offset="1711" max-vertical-offset="2670">
               <folding />
             </state>
           </provider>
@@ -141,8 +75,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../../psa_admin/main/views.py" />
-        <option value="$PROJECT_DIR$/../../psa_admin/psa_admin/settings.py" />
         <option value="$PROJECT_DIR$/../../psa_admin/psa_admin/urls.py" />
         <option value="$PROJECT_DIR$/../../psa_admin/main/admin_conf.py" />
         <option value="$PROJECT_DIR$/../../psa_admin/main/models.py" />
@@ -151,12 +83,14 @@
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/vendor/jquery.js" />
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/vendor/jquery-ui.js" />
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/core/main.js" />
-        <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/apps/gettest/templates/index.html" />
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/core/tester.js" />
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/fonts/font-awesome.css" />
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/main.css" />
-        <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py" />
+        <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/apps/gettest/templates/index.html" />
         <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/settings.py" />
+        <option value="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py" />
+        <option value="$PROJECT_DIR$/../../psa_admin/template/admin/base_site.html" />
+        <option value="$PROJECT_DIR$/../../psa_admin/psa_admin/settings.py" />
       </list>
     </option>
   </component>
@@ -221,7 +155,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hellodjango" />
+              <option name="myItemId" value="socialstory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -231,11 +165,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hellodjango" />
+              <option name="myItemId" value="socialstory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hellodjango" />
+              <option name="myItemId" value="source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -245,7 +179,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hellodjango" />
+              <option name="myItemId" value="socialstory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -259,25 +193,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hellodjango" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gettest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="socialstory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hellodjango" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -285,11 +201,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gettest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="restapi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -317,11 +229,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/rest_framework" />
       <recent name="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/utils" />
       <recent name="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/static" />
       <recent name="$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango" />
       <recent name="$PROJECT_DIR$/../../ditbog/ditbog/libs" />
-      <recent name="$PROJECT_DIR$/apps/stories/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/../../psa_admin/main" />
@@ -561,110 +473,104 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/apps/gettest/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="21" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../psa_admin/psa_admin/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="6" selection-start="120" selection-end="120" vertical-scroll-proportion="0.10729614" vertical-offset="0" max-vertical-offset="699" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../psa_admin/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="12" selection-start="12453" selection-end="12453" vertical-scroll-proportion="0.0" vertical-offset="2359" max-vertical-offset="3060">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../psa_admin/psa_admin/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="58" selection-start="732" selection-end="732" vertical-scroll-proportion="0.36480686" vertical-offset="0" max-vertical-offset="699">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../psa_admin/main/admin_conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="30" selection-start="5847" selection-end="5847" vertical-scroll-proportion="0.88412017" vertical-offset="1062" max-vertical-offset="2670">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/normilize.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="422" column="1" selection-start="7582" selection-end="7582" vertical-scroll-proportion="0.95708156" vertical-offset="5661" max-vertical-offset="6420">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/vendor/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28898" selection-start="93106" selection-end="93106" vertical-scroll-proportion="0.10932945" vertical-offset="0" max-vertical-offset="686">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/vendor/jquery-ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="46908" selection-start="47200" selection-end="47200" vertical-scroll-proportion="0.10932945" vertical-offset="0" max-vertical-offset="686">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/apps/gettest/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="24" selection-start="2816" selection-end="2816" vertical-scroll-proportion="-51.25" vertical-offset="180" max-vertical-offset="1545">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="17618" selection-start="17780" selection-end="17780" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-          <folding />
-        </state>
+        <state line="3" column="17618" selection-start="17780" selection-end="17780" vertical-scroll-proportion="0.06787331" vertical-offset="0" max-vertical-offset="663" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/core/tester.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="411" column="1" selection-start="12081" selection-end="12081" vertical-scroll-proportion="0.0" vertical-offset="5509" max-vertical-offset="6255">
-          <folding />
-        </state>
+        <state line="411" column="1" selection-start="12081" selection-end="12081" vertical-scroll-proportion="0.95626825" vertical-offset="5509" max-vertical-offset="6255" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/js/core/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="90" selection-end="90" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
+        <state line="7" column="3" selection-start="90" selection-end="90" vertical-scroll-proportion="0.1502146" vertical-offset="0" max-vertical-offset="699" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/fonts/font-awesome.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="36" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25575">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="331" column="32" selection-start="6253" selection-end="6253" vertical-scroll-proportion="0.0" vertical-offset="4701" max-vertical-offset="6480">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="31" selection-start="341" selection-end="391" vertical-scroll-proportion="-7.2" vertical-offset="0" max-vertical-offset="375">
-          <folding />
-        </state>
+        <state line="23" column="36" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25575" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="49" selection-start="2197" selection-end="2197" vertical-scroll-proportion="0.47004607" vertical-offset="1059" max-vertical-offset="1710">
+        <state line="92" column="0" selection-start="2197" selection-end="2197" vertical-scroll-proportion="0.527897" vertical-offset="1011" max-vertical-offset="1710" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="523" selection-end="523" vertical-scroll-proportion="0.437788" vertical-offset="0" max-vertical-offset="651" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/hellodjango/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="327" column="32" selection-start="6121" selection-end="6121" vertical-scroll-proportion="0.2918455" vertical-offset="4701" max-vertical-offset="6480" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../servers/ubuntu/hellodjango/apps/gettest/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="78" selection-start="2756" selection-end="2911" vertical-scroll-proportion="0.7469325" vertical-offset="878" max-vertical-offset="1530" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../psa_admin/psa_admin/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="5" selection-start="4221" selection-end="4228" vertical-scroll-proportion="0.3204578" vertical-offset="1666" max-vertical-offset="2550">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/restapi/configurations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../django_test/django_test/rest_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../django_test/rest/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.24480712" vertical-offset="0" max-vertical-offset="674">
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/rest_framework/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="23" selection-start="245" selection-end="245" vertical-scroll-proportion="0.27896994" vertical-offset="0" max-vertical-offset="1155">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/rest_framework/css/navbar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../django_test/django_test/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="34" selection-start="915" selection-end="915" vertical-scroll-proportion="0.2542373" vertical-offset="330" max-vertical-offset="1470">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="21" selection-start="4648" selection-end="4648" vertical-scroll-proportion="0.3323442" vertical-offset="1711" max-vertical-offset="2670">
           <folding />
         </state>
       </provider>
