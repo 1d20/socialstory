@@ -1,2 +1,0 @@
-<h1>Empty story</h1>
-<p class="p">You did not load story text.</p>

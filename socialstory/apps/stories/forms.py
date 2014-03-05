@@ -17,7 +17,7 @@ class StoryForm(ModelForm):
         model = StoryModel
         exclude = ('user', )
         #fields='__all__'
-        fields = ['title', 'story', 'description', 'language', 'poster', 'genres']
+        fields = ['title', 'description', 'language', 'poster', 'genres']
     def setUserId(self, user_id = 0):
         self.instance.user_id = user_id
     def setStoryData(self, story_id = 0):

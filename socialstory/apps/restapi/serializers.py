@@ -36,9 +36,14 @@ class SimilarStorySerializer(serializers.HyperlinkedModelSerializer):
         model = StoryModel.SimilarStory
         fields = ('id', 'story1', 'story2', 'count')
 
-class VersionsSerializer(serializers.HyperlinkedModelSerializer):
+class BranchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = StoryModel.Versions
+        model = StoryModel.Branch
+        fields = ('id', 'story', 'user', 'title', 'date_add')
+
+class CommitSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = StoryModel.Commit
         fields = ('id', 'story', 'path', 'date_add')
 
 class WriterSerializer(serializers.HyperlinkedModelSerializer):

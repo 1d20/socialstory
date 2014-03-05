@@ -14,6 +14,8 @@
         {% csrf_token %}
         <h1>{{ story.title }}
             <button type="submit" aria-hidden="true" >Save</button>
+            Publish?<input name="is_publish" type="checkbox">
+            <input type="text" size="3" name="commit_message" value="nc">
         </h1>
         <div class="editable" id="content" name="content">{{ content|safe }}</div>
     </form>

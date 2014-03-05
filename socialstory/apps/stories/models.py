@@ -17,7 +17,6 @@ class Story(models.Model):
     language = models.ForeignKey('stories.Language', related_name='story_language')
     genres = models.ManyToManyField(SubGenre, related_name='story_subgenre')
     title = models.CharField(max_length=255)
-    story = models.FileField(upload_to='stories', default='stories/default.txt')
     poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
     description = models.TextField()
     rating = models.IntegerField(default=0)
@@ -39,9 +38,18 @@ class SimilarStory(models.Model):
     def __unicode__(self):
         return self.story1+self.story2
 
-class Versions(models.Model):
+class Branch(models.Model):
     story = models.ForeignKey(Story, related_name='story_version')
-    path = models.FileField(upload_to='versions',default='default')
+    user = models.ForeignKey('auth.User', related_name='user_version')
+    title = models.CharField(max_length=100, default='')
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
     def __unicode__(self):
-        return self.story+self.path
+        return self.story.title+self.title
+
+class Commit(models.Model):
+    branch = models.ForeignKey(Branch, related_name='commit_branch')
+    title = models.CharField(max_length=100, default='')
+    code = models.CharField(max_length=100, default='')
+    date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
+    def __unicode__(self):
+        return self.branch.story.title+self.title

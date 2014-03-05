@@ -30,9 +30,13 @@ class SimilarStoryViewSet(viewsets.ModelViewSet):
     queryset = StoryModel.SimilarStory.objects.all()
     serializer_class = serializers.SimilarStorySerializer
 
-class VersionsViewSet(viewsets.ModelViewSet):
-    queryset = StoryModel.Versions.objects.all()
-    serializer_class = serializers.VersionsSerializer
+class BranchViewSet(viewsets.ModelViewSet):
+    queryset = StoryModel.Branch.objects.all()
+    serializer_class = serializers.BranchSerializer
+
+class CommitViewSet(viewsets.ModelViewSet):
+    queryset = StoryModel.Commit.objects.all()
+    serializer_class = serializers.CommitSerializer
 
 class WriterViewSet(viewsets.ModelViewSet):
     queryset = WriterModel.Writer.objects.all()

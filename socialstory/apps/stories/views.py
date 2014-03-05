@@ -2,12 +2,14 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from forms import StoryForm
-from models import Story, SubGenre
+from models import *
 from apps.writer.models import WriterVote, WriterFavorite, WriterRead
 from django.core.context_processors import csrf
 from utils.decorators import render_to
-from utils.filefield import get_txt_content, create_txt_file, rewrite_txt_content
+from utils.file_module import *
+from utils.git_module import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import json
 
 
 def get_subgenres(selected_genres=''):
@@ -58,22 +60,24 @@ def my_stories(request):
 @render_to('reader.html')
 def read(request, story_id=0):
     story = Story.objects.get(id = story_id)
-    content = get_txt_content(story.story.url)
+    content = get_last_publish_commit(story)
     #print content
     return {'content': content}
 
 @login_required
 @render_to('editor.html')
-def editor(request, story_id=0):######################### If it is writer story
-    story = Story.objects.get(id = story_id)
-    if story.user != request.user:
+def editor(request, branch_id=0):
+    branch = Branch.objects.get(id = branch_id)
+    if branch.user != request.user:
         return HttpResponseRedirect('/stories/all/')
     if request.method == 'POST':
         content = request.POST.get('content')
-        print request.POST
-        rewrite_txt_content(story.story.url, content)
-    content = get_txt_content(story.story.url)
-    res = {'content': content, 'story': story}
+        #print request.POST
+        rewrite_txt_content(branch, content)
+        if request.POST.get('is_publish'):
+            commit(branch, request.POST['commit_message'])
+    content = get_txt_content(branch)
+    res = {'content': content, 'story': branch}
     res.update(csrf(request))
     return res
 
@@ -129,12 +133,14 @@ def add_story(request):
         if form.is_valid():
             form.setUserId(request.user.id)
             form.save()
-            id = str(form.instance.id)
-            if form.instance.story == 'stories/default.txt':
-                form.instance.story = create_txt_file(form.instance.story, id)
-                print form.instance.story
-                form.save()
-            return HttpResponseRedirect('/stories/editor/'+id+'/')
+            #story_folder = create_repository(form.instance)
+            b = Branch()
+            b.story = form.instance
+            b.user = request.user
+            b.title = 'Main'
+            b.save()
+            create_branch(b)
+            return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
     else:
         form = StoryForm(request.user)
 
@@ -142,6 +148,21 @@ def add_story(request):
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res
+
+@login_required
+@render_to('add_story.html')
+def branch_add(request, branch_id=0):
+    branch = Branch.objects.get(id = branch_id)
+    b = Branch()
+    b.story = branch.story
+    b.user = request.user
+    b.title = request.GET['branch_name']
+    b.save()
+    create_branch(b)
+    content = get_last_publish_commit(branch)
+    rewrite_txt_content(b, content)
+    commit(b, 'copy from '+branch.title)
+    return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
 
 @login_required
 @render_to('edit_story.html')
@@ -171,10 +192,12 @@ def edit_story(request, story_id=0):
 def story(request, story_id=0):
     if not len(WriterRead.objects.filter(user_id=request.user.id,story_id=story_id)):
             WriterRead.objects.create(user_id=request.user.id,story_id=story_id)
-    res = {'story':Story.objects.filter(id = story_id)[0],
+    res = {
+             'story':Story.objects.filter(id = story_id)[0],
              'vote':not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)),
              'favorite':not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)),
-             'my_story':len(Story.objects.filter(user_id=request.user.id,id=story_id))}
+             'user':request.user,
+          }
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res
@@ -196,3 +219,20 @@ def favorite_story(request, story_id):
         if not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)):
             WriterFavorite.objects.create(user_id=request.user.id,story_id=story_id)
     return HttpResponseRedirect('/stories/story/'+str(story_id))
+
+
+@login_required
+@render_to('story_history.html')
+def story_history(request, story_id=0):
+    story = Story.objects.get(id=story_id)
+    res = {'story': story}
+    res.update(get_subgenres(request.POST.get('genres')))
+    return res
+
+@login_required
+@render_to('commit_info.html')
+def commit_info(request, story_id=0, commit=0):
+    commit = Commit.objects.get(id=commit)
+    res = {'commit': commit, 'commit_info': get_commit_info(commit.branch, commit.code)}
+    res.update(get_subgenres(request.POST.get('genres')))
+    return res
