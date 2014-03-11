@@ -58,11 +58,13 @@ def my_stories(request):
 
 @login_required
 @render_to('reader.html')
-def read(request, story_id=0):
-    story = Story.objects.get(id = story_id)
-    content = get_last_publish_commit(story)
+def read(request, branch_id=0):
+    branch = Branch.objects.get(id = branch_id)
+    content = get_last_publish_commit(branch)
     #print content
-    return {'content': content}
+    res = {'content': content, 'branch':branch}
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('editor.html')
@@ -71,6 +73,7 @@ def editor(request, branch_id=0):
     if branch.user != request.user:
         return HttpResponseRedirect('/stories/all/')
     if request.method == 'POST':
+        print request.POST.get('content')
         content = request.POST.get('content')
         #print request.POST
         rewrite_txt_content(branch, content)
@@ -128,48 +131,62 @@ def main(request):
 @login_required
 @render_to('add_story.html')
 def add_story(request):
+    res = {}
     if request.method == 'POST':
-        form = StoryForm(request.user,request.POST, request.FILES)
-        if form.is_valid():
-            form.setUserId(request.user.id)
-            form.save()
-            #story_folder = create_repository(form.instance)
+        print request.POST
+        if not request.POST['title'] or not request.POST['description'] or not request.POST['language']\
+            or not request.POST.get('story_subgenres') or not request.FILES.get('poster'):
+            pass
+        else:
+            s = Story()
+            s.user = request.user
+            s.save()
+            for g in request.POST.getlist('story_subgenres'):
+                s.genres.add(SubGenre.objects.get(id=int(g)))
             b = Branch()
-            b.story = form.instance
+            b.language_id = int(request.POST['language'])
+            b.story = s
             b.user = request.user
-            b.title = 'Main'
+            b.title = request.POST['title']
+            b.poster = request.FILES.get('poster')
+            b.description = request.POST['description']
             b.save()
             create_branch(b)
             return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
-    else:
-        form = StoryForm(request.user)
 
-    res = { 'form': form, 'title':'Додати оповідання'}
+    res.update({ 'title':'Додати оповідання', 'languages':Language.objects.all(), 'all_subgenres':SubGenre.objects.all()})
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res
 
 @login_required
 @render_to('add_story.html')
-def branch_add(request, branch_id=0):
-    branch = Branch.objects.get(id = branch_id)
-    b = Branch()
-    b.story = branch.story
-    b.user = request.user
-    b.title = request.GET['branch_name']
-    b.save()
-    create_branch(b)
-    content = get_last_publish_commit(branch)
-    rewrite_txt_content(b, content)
-    commit(b, 'copy from '+branch.title)
-    return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
+def branch_request_add(request, branch_id=0):
+    b = Branch.objects.get(id=branch_id)
+    br = BranchRequests()
+    br.branch = b
+    br.comment_message = request.POST['comment']
+    br.request_user = request.user
+    br.save()
+    return HttpResponseRedirect('/stories/story/'+str(b.story.id)+'/')
+    #branch = Branch.objects.get(id = branch_id)
+    #b = Branch()
+    #b.story = branch.story
+    #b.user = request.user
+    #b.title = request.GET['branch_name']
+    #b.save()
+    #create_branch(b)
+    #content = get_last_publish_commit(branch)
+    #rewrite_txt_content(b, content)
+    #commit(b, 'copy from '+branch.title)
+    #return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
 
 @login_required
 @render_to('edit_story.html')
 def edit_story(request, story_id=0):
     instance=Story.objects.get(id=story_id)
     if request.method == 'POST':
-        form = StoryForm(request.user,request.POST, request.FILES)
+        form = StoryForm(request.user, request.POST, request.FILES)
         if form.is_valid():
             if instance.user_id != request.user.id:
                 return HttpResponseRedirect('/stories/all/')
@@ -193,10 +210,10 @@ def story(request, story_id=0):
     if not len(WriterRead.objects.filter(user_id=request.user.id,story_id=story_id)):
             WriterRead.objects.create(user_id=request.user.id,story_id=story_id)
     res = {
-             'story':Story.objects.filter(id = story_id)[0],
-             'vote':not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)),
-             'favorite':not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)),
-             'user':request.user,
+             'story': Story.objects.filter(id = story_id)[0],
+             'vote': not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)),
+             'favorite': not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)),
+             'user': request.user,
           }
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))

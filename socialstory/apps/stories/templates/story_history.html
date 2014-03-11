@@ -12,7 +12,6 @@
 
         <div class="fieldWrapper">
             <div class="form-actions">
-                <h1>{{ story.title }}(<a href="/writer/{{ b.user.id }}/">{{ b.user }}</a>)</h1>
                 {% for b in story.story_version.all %}
                 <br/>
                 <h4>{{ b.title }}(<a href="/writer/{{ b.user.id }}/">{{ b.user }}</a>)</h4>

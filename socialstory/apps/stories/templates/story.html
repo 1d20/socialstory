@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ story.title }}{% endblock %}
+{% block title %}{{ story.story_version.all.0.title }}{% endblock %}
 
 {% block content  %}
 <div class="row">
@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            <legend>{{ story.title }}
+            <legend>{{ story.story_version.all.0.title }}
                 {% if favorite %}
                     (<a href="/stories/favorite/{{ story.id }}/">Додати у вибрані</a>)
                 {% endif %}
@@ -20,13 +20,12 @@
             </legend>
         </div>
         <div class="col-lg-3">
-                <img src="{{ story.poster.url }}" width="250" height="400" />
+                <img src="{{ story.story_version.all.0.poster.url }}" width="250" height="400" />
             </div>
             <div class="col-lg-6">
                 <div class="fieldWrapper">
                     <p> Автор:              <a href="/writer/{{ story.user_id }}/">{{ story.user }}</a> </p>
                     <p> Жанр:               {{ story.genres.all|join:', ' }}</p>
-                    <p> Мова:               {{ story.language.language }} </p>
                     <p> Рейтинг:            {{ story.rating }} </p>
                     <p> Кількість голосів:  {{ story.voteCount }}
                     {% if vote %}<br/>
@@ -35,8 +34,7 @@
                         <a href="/stories/vote/{{ story.id }}/3/">3 </a>
                         <a href="/stories/vote/{{ story.id }}/4/">4 </a>
                         <a href="/stories/vote/{{ story.id }}/5/">5 </a>)
-                    {% endif %}                                             </p>
-                    <p> Кількість сторінок: {{ story.pages }} </p>
+                    {% endif %}</p>
                     <p> Читати:
                         <lu>
                             {% for b in story.story_version.all %}
@@ -44,12 +42,14 @@
 
                                 <a href="/stories/read/{{ b.id }}/">{{ b.title }}</a>
                                 (<a href="/writer/{{ b.user.id }}/">{{ b.user }}</a>)
+                                ({{ b.language }})
                                 {% if b.user.id == user.id %}
                                     (<a href="/stories/editor/{{ b.id }}/">Редагувати текст</a>)
                                 {% endif %}
-                                <form class="form-inline" role="form" action="/stories/branch/add/{{ b.id }}/" method="get" >
-                                    ( <input type="text" size="10" name="branch_name" value="new_branch">
-                                    <input type="submit" value="Створити гілку"> )
+                                <form class="form-inline" role="form" action="/stories/branch/request/add/{{ b.id }}/" method="post" >
+                                    {% csrf_token %}
+                                    ( <textarea name="comment" cols="40" rows="3" >I want to create new branch</textarea>
+                                    <input type="submit" value="Запит на створення гілки"> )
                                 </form>
                             </li>
                             {% endfor %}
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <p> Опис: <br/> {{ story.description }} </p>
+                <p> Опис: <br/> {{ story.story_version.all.0.description }} </p>
             </div>
     </div>
     <div class="row">

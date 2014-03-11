@@ -37,8 +37,8 @@ def create_branch(branch):
     commit(branch, 'branch init')
     os.chdir(PROJECT_PATH)
 
-def get_last_publish_commit(story):
-    id = story.id
+def get_last_publish_commit(branch):
+    id = branch.id
     STORY_FOLDER = GLOBAL_STORY_FOLDER.format(str(id))
     os.chdir(STORY_FOLDER)
     result = subprocess.check_output("git show HEAD:"+TEMPLATE_FILE_NAME, shell=True)
@@ -50,10 +50,53 @@ def get_commit_info(story, commit):
     id = story.id
     STORY_FOLDER = GLOBAL_STORY_FOLDER.format(str(id))
     os.chdir(STORY_FOLDER)
-    HISTORY_LIST_COMMAND = open(os.path.join(STATIC_ROOT, 'bash/commit_info.bash')).read()
+    HISTORY_LIST_COMMAND = 'git show '
     result = subprocess.check_output(HISTORY_LIST_COMMAND+commit, shell=True)
     result = result[:-1]
     os.chdir(PROJECT_PATH)
+
+    result = result.split('\n')
+    commit_code = result[0].split('commit')[1]
+    date = result[2].split('Date:')[1]
+
+    #blocks = []
+
+    #result = {
+    #    'code': commit_code,
+    #    'date': date,
+        #'blocks': blocks,
+    #}
+
+    #'lines': lines,
+    #    'changes': changes,
+    #block = {}
+    #changes = []
+    #bls = result[2].split('Date:')[1]
+    #for l in bls:
+    #    if '@' == l[0]:
+    #        blocks.append(block)
+    #        block = {}
+    #        changes = []
+    #        block['lines'] = l[2:-2]
+    #        block['changes'] = changes
+    #    changes.append({
+    #        'type': l[0],
+    #        'content': l[1:],
+    #    })
+
+    #lines = result[10][2:-2]
+    cs = result[10:]
+    changes = []
+    for c in cs:
+        changes.append({
+            'type': c[0],
+            'content': c[1:],
+        })
+    result = {
+        'code': commit_code,
+        'date': date,
+        'changes': changes,
+    }
     return result
 
 #def get_commit_list(story):

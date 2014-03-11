@@ -5,16 +5,31 @@ from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from models import Messages
 from utils.decorators import render_to
+from apps.stories.models import BranchRequests
 
 @login_required
 def index(request):
     return HttpResponseRedirect('/message/all/')
 
 @login_required
-@render_to('messages.html')
+@render_to('list.html')
 def all_messages(request):
     return { 'title': 'Список повідомлень', 'messages': Messages.objects.filter(
-            user_to=request.user).order_by('-date_add').all() }
+            user_to=request.user).order_by('-date_add').all(), 'show_path': 'messages/all_messages.html',
+             'active_page': 'all_messages' }
+
+@login_required
+@render_to('list.html')
+def all_request(request):
+    another_req = BranchRequests.objects.all()#filter(branch.story.user = request.user)
+    my_req = BranchRequests.objects.filter(request_user = request.user)
+    another_req = list(filter(lambda ar: ar.branch.story.user == request.user, another_req))
+    #another_req = map(lambda u: u.user_to.writer, another_req)
+    #my_req = map(lambda u: u.user_from.writer, my_req)
+    return { 'title': 'Список запитів', 'show_path': 'messages/all_requests.html',
+             'active_page': 'all_requests',
+             'another_req': another_req,
+             'my_req': my_req }
 
 @login_required
 @render_to('send_message.html')

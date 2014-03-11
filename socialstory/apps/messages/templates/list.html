@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="col-lg-2">
+        {% include 'messages/left_menu.html' %}
+    </div>
+    <div class="col-lg-10">
+        {% include show_path %}
+    </div>
+{% endblock %}

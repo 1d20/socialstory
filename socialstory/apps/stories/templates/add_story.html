@@ -18,7 +18,23 @@
                 {% csrf_token %}
                 <div class="fieldWrapper">
                     <div class="form-actions">
-                        <table>{{ form.as_table }}</table>
+                        <p>Title: <input type="text" name="title" size="40" ></p>
+                        <p>Description: <textarea name="description" cols="40" rows="3"></textarea></p>
+                        <p>Poster: <input type="file" name="poster" ></p>
+                        <p>Language:
+                            <select name="language">
+                                {% for l in languages %}
+                              <option value="{{ l.id }}">{{ l.language }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                        <p>Genres:
+                            <select name="story_subgenres" multiple>
+                                {% for s in all_subgenres %}
+                              <option value="{{ s.id }}">{{ s.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
                         <div class="controls">
                             <button class="btn btn-primary" type="submit">Add</button>
                         </div>

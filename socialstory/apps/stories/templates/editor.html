@@ -13,7 +13,7 @@
     <form class="form-inline" role="form" id="submit" action="/stories/editor/{{ story.id }}/"  method="post" >
         {% csrf_token %}
         <h1>{{ story.title }}
-            <button type="submit" aria-hidden="true" >Save</button>
+            <button type="submit" aria-hidden="true">Save</button>
             Publish?<input name="is_publish" type="checkbox">
             <input type="text" size="3" name="commit_message" value="nc">
         </h1>
@@ -37,16 +37,22 @@ var editor = new MediumEditor('.editable', {
 });
 
 var submit = document.getElementById('submit');
-submit.onsubmit = function() {
+submit.onsubmit = function(e) {
+    e.preventDefault();
+
     var data;
     if (editor.serialize()['content'])
         data = editor.serialize()['content'].value;
     else
         editor.serialize()[0].value;
-    var input = document.createElement('input');
+    var input = document.createElement('textarea');
     submit.appendChild(input);
     input.name = 'content';
     input.value = data;
+
+    console.log(data);
+
+    // return false;
     this.submit();
 }
 

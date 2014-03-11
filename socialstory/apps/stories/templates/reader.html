@@ -14,6 +14,29 @@
 <body>
   <div id="reader">
     <div id="container" class="ssr-container">
+        <form action="/writer/comment/add/{{ branch.id }}/"  method="post" >
+            {% csrf_token %}
+            Comment:
+            Private?<input name="private" type="checkbox">
+            <input type="text" size="1" name="paragraph_index" value="0">
+            <input type="text" size="1" name="first_char" value="10">
+            <input type="text" size="1" name="last_char" value="6">
+            <input type="text" size="10" name="content" value="comment">
+            <button type="submit">Send</button>
+        </form>
+        <form action="/writer/note/add/{{ branch.id }}/"  method="post" >
+            {% csrf_token %}
+            Note:
+            <input type="text" size="1" name="paragraph_index" value="0">
+            <input type="text" size="10" name="content">
+            <button type="submit">Send</button>
+        </form>
+        <form action="/writer/mark/add/{{ branch.id }}/"  method="post" >
+            {% csrf_token %}
+            Mark:
+            <input type="text" size="1" name="paragraph_index" value="0">
+            <button type="submit">Send</button>
+        </form>
     </div>
   </div>
 

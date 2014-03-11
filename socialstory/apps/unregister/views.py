@@ -7,7 +7,7 @@ from utils.decorators import render_to
 def index(request):
     if request.user is not None:
         if request.user.is_active:
-            return HttpResponseRedirect('/writer/')
+            return HttpResponseRedirect('/stories/')
         else:
             return HttpResponseRedirect('/acc/login/')
     else:

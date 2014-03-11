@@ -29,15 +29,18 @@
                 <table class="table table-striped">
                     <th>Назва</th>
                     <th>Автор</th>
-                    <th>Жанр</th>
-                    <th>Мова</th>
+                    <th>Жанри</th>
+                    <th>Мови</th>
                     <th>Рейтинг</th>
                     {% for story in stories.object_list %}
                     <tr>
-                       <td><a href="/stories/story/{{ story.id }}/">{{ story.title }}</a></td>
+                       <td><a href="/stories/story/{{ story.id }}/">{{ story.story_version.all|first }}</a></td>
                        <td><a href="/writer/{{ story.user_id }}/">{{ story.user }}</a></td>
                         <td>{{ story.genres.all|join:', ' }}</td>
-                        <td>{{ story.language.language }}</td>
+                        <td>{% for b in story.story_version.all %}
+                            {{ b.language }}
+                            {% endfor %}
+                        </td>
                        <td>{{ story.rating }}({{ story.voteCount }})</td>
                     </tr>
                     {% endfor %}

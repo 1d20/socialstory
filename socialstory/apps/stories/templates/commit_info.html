@@ -9,10 +9,18 @@
     </div>
     <div class="row">
 
-        <h1>Story: {{ commit.branch.story.title }}(<a href="/writer/{{ commit.branch.story.user.id }}/">{{ commit.branch.story.user }}</a>)</h1>
+        <h1>Story: {{ commit.branch.title }}(<a href="/writer/{{ commit.branch.story.user.id }}/">{{ commit.branch.story.user }}</a>)</h1>
         <h3>Brunch: {{ commit.branch.title }}(<a href="/writer/{{ commit.branch.user.id }}/">{{ commit.branch.user }}</a>)</h3>
-        <h4>Commit: {{ commit.title }}({{ commit.code }})</h4>
-        <p>{{ commit_info }}</p>
+        <h4>Commit: {{ commit.title }}({{ commit_info.code }})</h4>
+        <h4>Date: {{ commit_info.date }}</h4>
+        <h4>Changes:</h4>
+        <div class="col-lg-8">
+            {% for c in commit_info.changes %}
+                <p><font color="{%if c.type == '+' %}green
+                {% elif c.type == '-' %}red
+                {% elif c.type == '@' %}blue{% endif %}">{{ c.content }}</font></p>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

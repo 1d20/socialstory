@@ -1,0 +1,28 @@
+<h3>Чужі заявки:</h3><br/>
+{% for ar in another_req %}
+    <table class="table">
+        <div class="col-lg-2">
+            <img src="{{ ar.request_user.writer_user.picture.url }}" width="105" height="135" />
+        </div>
+        <div class="col-lg-10">
+            <p><a href="/writer/{{ ar.request_user.id }}/">{{ ar.request_user }}</a></p>
+            <p><a href="/message/write/{{ ar.request_user.id }}">Написати повідомлення</a></p>
+            <p><a href="/people/friend/addO/{{ ar.request_user.id }}/">Створити гілку</a></p>
+            <p><a href="/people/request/deleteO/{{ ar.request_user.id }}/">Відхилити</a></p>
+        </div>
+    </table>
+{% endfor %}
+
+<h3>Ваші заявки:</h3><br/>
+{% for ar in my_req %}
+    <table class="table">
+        <div class="col-lg-2">
+            <img src="{{ ar.request_user.writer_user.picture.url }}" width="105" height="135" />
+        </div>
+        <div class="col-lg-10">
+            <p><a href="/writer/{{ ar.request_user.id }}/">{{ ar.request_user }}</a></p>
+            <p><a href="/message/write/{{ ar.request_user.id }}">Написати повідомлення</a></p>
+            <p><a href="/people/request/delete0/{{ ar.request_user.id }}/">Відмінити заявку</a></p>
+        </div>
+    </table>
+{% endfor %}

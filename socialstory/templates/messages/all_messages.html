@@ -1,0 +1,14 @@
+<br/>
+{% for message in messages %}
+    <table class="table">
+        <div class="col-lg-2">
+            <img src="{{ message.user_from.writer.picture.url }}" width="105" height="135" />
+        </div>
+        <div class="col-lg-10">
+            <p><a href="/writer/{{ message.user_from.id }}/">{{ message.user_from }}</a></p>
+            <p><b>{{ message.title }}</b> ({{ message.date_add }})</p>
+            <p> {{ message.content }} </p>
+            <p><a href="/message/write/{{ message.user_from.id }}">Написати повідомлення</a></p>
+        </div>
+    </table>
+{% endfor %}

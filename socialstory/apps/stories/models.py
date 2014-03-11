@@ -14,17 +14,17 @@ class SubGenre(models.Model):
 
 class Story(models.Model):
     user = models.ForeignKey('auth.User', related_name='story_user')
-    language = models.ForeignKey('stories.Language', related_name='story_language')
+    #language = models.ForeignKey('stories.Language', related_name='story_language')
     genres = models.ManyToManyField(SubGenre, related_name='story_subgenre')
-    title = models.CharField(max_length=255)
-    poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
-    description = models.TextField()
+    #title = models.CharField(max_length=255)
+    #poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
+    #description = models.TextField()
     rating = models.IntegerField(default=0)
     voteCount = models.IntegerField(default=0)
-    pages = models.IntegerField(default=0)
+    #pages = models.IntegerField(default=0)
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
     def __unicode__(self):
-        return self.title
+        return str(self.date_add)
 
 class Language(models.Model):
     language = models.CharField(max_length=255,default='')
@@ -39,12 +39,22 @@ class SimilarStory(models.Model):
         return self.story1+self.story2
 
 class Branch(models.Model):
+    language = models.ForeignKey('stories.Language', related_name='branch_language')
     story = models.ForeignKey(Story, related_name='story_version')
     user = models.ForeignKey('auth.User', related_name='user_version')
     title = models.CharField(max_length=100, default='')
+    poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
+    description = models.TextField()
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
     def __unicode__(self):
-        return self.story.title+self.title
+        return self.title
+
+class BranchRequests(models.Model):
+    branch = models.ForeignKey(Branch, related_name='branchrequest_branch')
+    request_user = models.ForeignKey('auth.User', related_name='branchrequest_user')
+    comment_message = models.TextField()
+    def __unicode__(self):
+        return self.branch.title+'- '+self.request_user.username
 
 class Commit(models.Model):
     branch = models.ForeignKey(Branch, related_name='commit_branch')
@@ -52,4 +62,4 @@ class Commit(models.Model):
     code = models.CharField(max_length=100, default='')
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
     def __unicode__(self):
-        return self.branch.story.title+self.title
+        return self.branch.title+self.title
