@@ -5,10 +5,12 @@
             <img src="{{ ar.request_user.writer_user.picture.url }}" width="105" height="135" />
         </div>
         <div class="col-lg-10">
-            <p><a href="/writer/{{ ar.request_user.id }}/">{{ ar.request_user }}</a></p>
-            <p><a href="/message/write/{{ ar.request_user.id }}">Написати повідомлення</a></p>
-            <p><a href="/people/friend/addO/{{ ar.request_user.id }}/">Створити гілку</a></p>
-            <p><a href="/people/request/deleteO/{{ ar.request_user.id }}/">Відхилити</a></p>
+            <p><a href="/writer/{{ ar.request_user.id }}/">{{ ar.request_user }}</a> (
+                <a href="/message/write/{{ ar.request_user.id }}">Написати повідомлення</a> )</p>
+            <p><a href="/stories/story/{{ ar.branch.story.id }}/">{{ ar.branch.title }}</a></p>
+            <p>{{ ar.comment_message }}</p>
+            <p><a href="/stories/branch/add/{{ ar.id }}/">Створити гілку</a></p>
+            <p><a href="/message/request/delete/{{ ar.id }}/">Відхилити</a></p>
         </div>
     </table>
 {% endfor %}
@@ -20,9 +22,10 @@
             <img src="{{ ar.request_user.writer_user.picture.url }}" width="105" height="135" />
         </div>
         <div class="col-lg-10">
-            <p><a href="/writer/{{ ar.request_user.id }}/">{{ ar.request_user }}</a></p>
+            <p><a href="/stories/story/{{ ar.branch.story.id }}/">{{ ar.branch.title }}</a></p>
+            <p>{{ ar.comment_message }}</p>
             <p><a href="/message/write/{{ ar.request_user.id }}">Написати повідомлення</a></p>
-            <p><a href="/people/request/delete0/{{ ar.request_user.id }}/">Відмінити заявку</a></p>
+            <p><a href="/message/request/delete/{{ ar.id }}/">Відмінити заявку</a></p>
         </div>
     </table>
 {% endfor %}

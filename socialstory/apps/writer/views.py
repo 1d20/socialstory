@@ -16,7 +16,7 @@ def index(request):
 @login_required
 @render_to('writer.html')
 def writer(request, user_id=1):
-    return {'writer':Writer.objects.filter(user_id = user_id)[0], 'user_id':request.user.id }
+    return {'writer': Writer.objects.filter(user_id=user_id)[0], 'user_id':request.user.id}
 
 @login_required
 @render_to('edit_writer.html')

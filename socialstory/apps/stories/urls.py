@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^favorite/(?P<story_id>\d+)/$', views.favorite_story, name='favorite'),
 
     url(r'^branch/request/add/(?P<branch_id>\d+)/$', views.branch_request_add, name='branch_request_add'),
+    url(r'^branch/add/(?P<req_id>\d+)/$', views.branch_add, name='branch_add'),
 
     url(r'^history/(?P<story_id>\d+)/$', views.story_history, name='story_history'),
     url(r'^history/(?P<story_id>\d+)/(?P<commit>\w+)/$', views.commit_info, name='commit_info'),

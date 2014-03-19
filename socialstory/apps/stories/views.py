@@ -1,7 +1,6 @@
 #-*- coding:utf-8 -*-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from forms import StoryForm
 from models import *
 from apps.writer.models import WriterVote, WriterFavorite, WriterRead
 from django.core.context_processors import csrf
@@ -169,37 +168,57 @@ def branch_request_add(request, branch_id=0):
     br.request_user = request.user
     br.save()
     return HttpResponseRedirect('/stories/story/'+str(b.story.id)+'/')
-    #branch = Branch.objects.get(id = branch_id)
-    #b = Branch()
-    #b.story = branch.story
-    #b.user = request.user
-    #b.title = request.GET['branch_name']
-    #b.save()
-    #create_branch(b)
-    #content = get_last_publish_commit(branch)
-    #rewrite_txt_content(b, content)
-    #commit(b, 'copy from '+branch.title)
-    #return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
+
+@login_required
+@render_to('add_branch.html')
+def branch_add(request, req_id=0):
+    req = BranchRequests.objects.get(id=req_id)
+    if request.user != req.branch.story.user:
+        return HttpResponseRedirect('/')
+    res = {}
+    if request.method == 'POST':
+        if not request.POST['title'] or not request.POST['description'] or not request.POST['language']\
+                or not request.FILES.get('poster'):
+            pass
+        else:
+            b = Branch()
+            b.language_id = int(request.POST['language'])
+            b.story = req.branch.story
+            b.user = request.user
+            b.title = request.POST['title']
+            b.poster = request.FILES.get('poster')
+            b.description = request.POST['description']
+            b.save()
+            create_branch(b)
+            content = get_last_publish_commit(req.branch)
+            rewrite_txt_content(b, content)
+            req.delete()
+            return HttpResponseRedirect('/stories/editor/'+str(b.id)+'/')
+
+    res.update({ 'title':'Нова гілка', 'languages':Language.objects.all(), 'request':req})
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('edit_story.html')
 def edit_story(request, story_id=0):
     instance=Story.objects.get(id=story_id)
     if request.method == 'POST':
-        form = StoryForm(request.user, request.POST, request.FILES)
-        if form.is_valid():
-            if instance.user_id != request.user.id:
-                return HttpResponseRedirect('/stories/all/')
-            form.setStoryData(story_id)
-            form.setUserId(request.user.id)
-            form.save()
-            return HttpResponseRedirect('/stories/story/'+str(story_id))
-    else:
-        if instance.user_id == request.user.id:
-            form = StoryForm(request.user,instance=instance)
-        else:
-            return HttpResponseRedirect('/stories/all/')
-    res = { 'form': form, 'story_id': instance.id, 'title':instance.title}
+        pass
+    #    form = StoryForm(request.user, request.POST, request.FILES)
+    #    if form.is_valid():
+    #        if instance.user_id != request.user.id:
+    #            return HttpResponseRedirect('/stories/all/')
+    #        form.setStoryData(story_id)
+    #        form.setUserId(request.user.id)
+    #        form.save()
+    #        return HttpResponseRedirect('/stories/story/'+str(story_id))
+    #else:
+    #    if instance.user_id == request.user.id:
+    #        form = StoryForm(request.user,instance=instance)
+    #    else:
+    #        return HttpResponseRedirect('/stories/all/')
+    res = {'story': instance, 'title': 'Редагування оповідання', 'languages':Language.objects.all()}
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res

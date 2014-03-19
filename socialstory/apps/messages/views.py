@@ -24,8 +24,6 @@ def all_request(request):
     another_req = BranchRequests.objects.all()#filter(branch.story.user = request.user)
     my_req = BranchRequests.objects.filter(request_user = request.user)
     another_req = list(filter(lambda ar: ar.branch.story.user == request.user, another_req))
-    #another_req = map(lambda u: u.user_to.writer, another_req)
-    #my_req = map(lambda u: u.user_from.writer, my_req)
     return { 'title': 'Список запитів', 'show_path': 'messages/all_requests.html',
              'active_page': 'all_requests',
              'another_req': another_req,
@@ -59,3 +57,11 @@ def send_message(request, user_id):
         message.save()
         return HttpResponseRedirect('/message/all/')
     return HttpResponseRedirect('/message/write/'+user_id)
+
+@login_required
+@render_to('list.html')
+def delete_request(request, req_id=0):
+    req = BranchRequests.objects.get(id=req_id)
+    if request.user == req.request_user or request.user == req.branch.story.user:
+        req.delete()
+    return HttpResponseRedirect('/message/request/all/')

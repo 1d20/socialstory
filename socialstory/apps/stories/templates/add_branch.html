@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block links %}
+<link href="/static/bootstrap/css/custom.css" rel="stylesheet">
+{% endblock %}
+
+{% block content  %}
+<div class="row">
+    <div class="col-lg-2">
+        {% include 'messages/left_menu.html' %}
+    </div>
+    <div class="col-lg-10">
+        <form method="post" action="/stories/branch/add/{{ request.id }}/" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Нова гілка</legend>
+                {% csrf_token %}
+                <div class="fieldWrapper">
+                    <div class="form-actions">
+                        <p>Title: <input type="text" name="title" size="40" ></p>
+                        <p>Description: <textarea name="description" cols="40" rows="3"></textarea></p>
+                        <p>Poster: <input type="file" name="poster" ></p>
+                        <p>Language:
+                            <select name="language">
+                                {% for l in languages %}
+                              <option value="{{ l.id }}">{{ l.language }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                        <div class="controls">
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

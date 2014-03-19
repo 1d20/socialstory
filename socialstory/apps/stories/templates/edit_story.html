@@ -18,7 +18,35 @@
                 {% csrf_token %}
                 <div class="fieldWrapper">
                     <div class="form-actions">
-                        <table>{{ form.as_table }}</table>
+                        <h1>Зробити: формочку для кожної гілки + функцію для збереження</h1>
+                        {% for b in story.story_version.all %}
+                        <br/>
+                        <h1>{{ b.title }}</h1>
+                        <table class="table table-striped">
+                            <tr>
+                                <td>Title</td>
+                                <td><input type="text" name="title" size="40" value="{{ b.title }}" ></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><textarea name="description" cols="40" rows="3">{{ b.description }}</textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Poster</td>
+                                <td>( Зараз: {{ b.poster }})<input type="file" name="poster" value="{{ b.poster }}" ></td>
+                            </tr>
+                            <tr>
+                                <td>Language</td>
+                                <td>
+                                    <select name="language">
+                                    {% for l in languages %}
+                                        <option value="{{ l.id }}">{{ l.language }}</option>
+                                    {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        {% endfor %}
                         <div class="controls">
                             <button class="btn btn-primary" type="submit">Edit</button>
                         </div>

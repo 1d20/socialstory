@@ -16,7 +16,7 @@
                 {% if story.user.id == user.id %}
                     (<a href="/stories/edit/{{ story.id }}/">Редагувати</a>)
                     (<a href="/stories/history/{{ story.id }}/">Історія</a>)
-                {% endif %}
+                {% endif %}(Інші версії:!!!!!, !!!!!, !!!!!, !!!!! )
             </legend>
         </div>
         <div class="col-lg-3">
@@ -39,7 +39,6 @@
                         <lu>
                             {% for b in story.story_version.all %}
                             <li>
-
                                 <a href="/stories/read/{{ b.id }}/">{{ b.title }}</a>
                                 (<a href="/writer/{{ b.user.id }}/">{{ b.user }}</a>)
                                 ({{ b.language }})
