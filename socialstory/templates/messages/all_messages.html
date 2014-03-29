@@ -2,13 +2,14 @@
 {% for message in messages %}
     <table class="table">
         <div class="col-lg-2">
-            <img src="{{ message.user_from.writer.picture.url }}" width="105" height="135" />
+            <img src="{{ message.picture_url }}" width="105" height="135" />
         </div>
         <div class="col-lg-10">
-            <p><a href="/writer/{{ message.user_from.id }}/">{{ message.user_from }}</a></p>
-            <p><b>{{ message.title }}</b> ({{ message.date_add }})</p>
+            <p><a href="/writer/{{ message.user.id }}/">{{ message.user }}</a></p>
+            <p><b>{{ message.title }}</b> ({{ message.date_add }})
+            {% if not message.is_write %}<font color="RED">NEW</font>{% endif %}</b></p>
             <p> {{ message.content }} </p>
-            <p><a href="/message/write/{{ message.user_from.id }}">Написати повідомлення</a></p>
+            <p><a href="/message/write/{{ message.user.id }}">Написати повідомлення</a></p>
         </div>
     </table>
 {% endfor %}

@@ -3,8 +3,10 @@
 
           <ul class="nav navbar-nav">
               <li>
-                  <form method="post" action="#">
-                    <input type="text" class="form-control" placeholder="Пошук" id="search" name="search" required autofocus>
+                  <form method="post" action="/stories/all/">
+                      {% csrf_token %}
+                    <input type="text" class="form-control"
+                           placeholder="{% if search %}{{ search }}{% else %}Пошук{% endif %}" name="search" required autofocus>
                   </form>
               </li>
           </ul>

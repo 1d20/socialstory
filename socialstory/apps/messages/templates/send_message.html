@@ -10,7 +10,7 @@
         <br/>
             <table class="table">
                 <div class="col-lg-2">
-                    <img src="{{ user.writer.picture.url }}" width="105" height="135" />
+                    <img src="{{ user.writer_user.picture.url }}" width="105" height="135" />
                 </div>
                 <div class="col-lg-10">
                 <form action="/message/send/{{ user.id }}/"  method="post" >
@@ -29,10 +29,10 @@
         {% for message in messages %}
         <table class="table">
             <div class="col-lg-2">
-                <img src="{{ message.user_from.writer.picture.url }}" width="105" height="135" />
+                <img src="{{ message.picture_url }}" width="105" height="135" />
             </div>
             <div class="col-lg-10">
-                <p><a href="/writer/{{ message.user_from.id }}/">{{ message.user_from }}</a></p>
+                <p><a href="/writer/{{ message.user.id }}/">{{ message.user }}</a></p>
                 <p><b>{{ message.title }}</b> ({{ message.date_add }})</p>
                 <p>{{ message.content }}</p>
             </div>

@@ -10,6 +10,15 @@
 
 {% block content  %}
 <div id="container">
+    <form class="form-inline" role="form" action="/stories/load/file/{{ story.id }}/"  method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <a href="/stories/story/{{ story.id }}/">Назад</a>
+        <h6>{{ story.title }}
+            <input type="file" name="load_file">
+            <button type="submit" aria-hidden="true">Load</button>
+        </h6>
+    </form>
+
     <form class="form-inline" role="form" id="submit" action="/stories/editor/{{ story.id }}/"  method="post" >
         {% csrf_token %}
         <h1>{{ story.title }}

@@ -4,7 +4,7 @@
 
 {% block content %}
         {% if writer.user_id == user_id %}
-        <ul class="nav navbar-right">
+<ul class="nav navbar-right" xmlns="http://www.w3.org/1999/html">
             <li><a href="/writer/edit/">Редагувати</a></li>
           </ul>
         {% endif %}
@@ -13,8 +13,44 @@
                 <img src="{{ writer.picture.url }}" width="350" height="450" />
             </div>
             <div class="col-lg-3">
-                <p><b>{{ writer.user.username }}</b></p>
+                <p><b>{{ writer.user.username }}</b> {{ writer.user.first_name }} {{ writer.user.last_name }}</p>
                 <p> Статус: {{ writer.status }} </p>
+                Оповідання:
+                <a href="/stories/user/{{user_id}}">Авторські</a>,
+                <a href="/stories/user/fav/{{user_id}}">Вибрані</a></br></br>
+                <p><a href="/writer/comments/{{ writer.user.id }}">Коментарі</a>:
+                    <table class="table">
+                    {% for c in comments %}
+                        <tr>
+                            <td><img src="{{ c.branch.poster.url }}" width="25" height="40" /></td>
+                            <td>{{ c.branch.title }}</td>
+                            <td>{{ c.content }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </p>
+                <p><a href="/writer/notes/{{ writer.user.id }}">Замітки</a>:
+                    <table class="table">
+                    {% for n in notes %}
+                        <tr>
+                            <td><img src="{{ n.branch.poster.url }}" width="25" height="40" /></td>
+                            <td>{{ n.branch.title }}</td>
+                            <td>{{ n.content }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </p>
+                <p><a href="/writer/marks/{{ writer.user.id }}/">Закладки</a>:
+                    <table class="table">
+                    {% for m in marks %}
+                        <tr>
+                            <td><img src="{{ m.branch.poster.url }}" width="25" height="40" /></td>
+                            <td>{{ m.branch.title }}</td>
+                            <td>{{ m.content }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </p>
                 <p> Біографія: <br/> {{ writer.biography }} </p>
 
             </div>

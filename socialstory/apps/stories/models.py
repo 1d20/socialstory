@@ -14,17 +14,12 @@ class SubGenre(models.Model):
 
 class Story(models.Model):
     user = models.ForeignKey('auth.User', related_name='story_user')
-    #language = models.ForeignKey('stories.Language', related_name='story_language')
     genres = models.ManyToManyField(SubGenre, related_name='story_subgenre')
-    #title = models.CharField(max_length=255)
-    #poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
-    #description = models.TextField()
     rating = models.IntegerField(default=0)
     voteCount = models.IntegerField(default=0)
-    #pages = models.IntegerField(default=0)
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
     def __unicode__(self):
-        return str(self.date_add)
+        return str(self.id)
 
 class Language(models.Model):
     language = models.CharField(max_length=255,default='')
@@ -36,7 +31,7 @@ class SimilarStory(models.Model):
     story2 = models.ForeignKey(Story, related_name='similar_story_2')
     count = models.IntegerField(max_length=10,default=0)
     def __unicode__(self):
-        return self.story1+self.story2
+        return str(self.story1)+' - '+str(self.story2)
 
 class Branch(models.Model):
     language = models.ForeignKey('stories.Language', related_name='branch_language')
@@ -46,6 +41,8 @@ class Branch(models.Model):
     poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
     description = models.TextField()
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
+    class Meta:
+        ordering = ['id']
     def __unicode__(self):
         return self.title
 

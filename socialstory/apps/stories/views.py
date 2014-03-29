@@ -2,14 +2,23 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from models import *
-from apps.writer.models import WriterVote, WriterFavorite, WriterRead
+from apps.writer.models import *
 from django.core.context_processors import csrf
 from utils.decorators import render_to
 from utils.file_module import *
 from utils.git_module import *
+from utils.story_module import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 
+def search_filter(stories, filter_string=''):
+    ss = []
+    for s in stories:
+        for b in s.story_version.all():
+            if filter_string in b.title:
+                ss.append(s)
+                break
+    return ss
 
 def get_subgenres(selected_genres=''):
     selSG = []
@@ -21,7 +30,7 @@ def get_subgenres(selected_genres=''):
         selSG = SubGenre.objects.filter(id__in=selSG).order_by('genre').all()
     return { 'subgenres': allSG, 'selected_subgenres': selSG }
 
-def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=None):
+def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=None, fitler_string=''):
     stories = []
     selSG = []
     if not selected_genres:
@@ -41,6 +50,7 @@ def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=No
         stories = sorted(stories, key=lambda stories: stories.date_add)
         stories = list(reversed(stories))
 
+    stories = search_filter(stories, fitler_string)
     paginator = Paginator(stories, 10)
     try:
         stories_list = paginator.page(page)
@@ -48,12 +58,43 @@ def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=No
         stories_list = paginator.page(1)
     except EmptyPage:
         stories_list = paginator.page(paginator.num_pages)
-    return { 'subgenres': allSG, 'selected_subgenres': selSG, 'stories': stories_list }
+    return {'subgenres': allSG, 'selected_subgenres': selSG, 'stories': stories_list}
 
 @login_required
 @render_to('stories.html')
-def my_stories(request):
-    return {'stories':Story.objects.filter(user_id = request.user.id), 'title':'Мої оповідання'}
+def user_stories(request, user_id=1):
+    ss = Story.objects.filter(user_id=user_id).all()
+    paginator = Paginator(ss, 10)
+    try:
+        stories_list = paginator.page(request.POST.get('page'))
+    except PageNotAnInteger:
+        stories_list = paginator.page(1)
+    except EmptyPage:
+        stories_list = paginator.page(paginator.num_pages)
+    res = {'stories': stories_list,
+            'title': 'Оповідання '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
+    res.update(get_subgenres(request.POST.get('genres')))
+    res.update(csrf(request))
+    return res
+
+@login_required
+@render_to('stories.html')
+def user_fav_stories(request, user_id=1):
+    wfs = WriterFavorite.objects.filter(user_id=user_id).all()
+    #ss =#############################################################ss.el => ss.el.story####################
+    ss = map(lambda wf: wf.story , wfs)
+    paginator = Paginator(ss, 10)
+    try:
+        stories_list = paginator.page(request.POST.get('page'))
+    except PageNotAnInteger:
+        stories_list = paginator.page(1)
+    except EmptyPage:
+        stories_list = paginator.page(paginator.num_pages)
+    res = {'stories': stories_list,
+            'title': 'Оповідання '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
+    res.update(get_subgenres(request.POST.get('genres')))
+    res.update(csrf(request))
+    return res
 
 @login_required
 @render_to('reader.html')
@@ -84,36 +125,57 @@ def editor(request, branch_id=0):
     return res
 
 @login_required
+def load_file(request, branch_id=0):
+    branch = Branch.objects.get(id = branch_id)
+    if branch.user != request.user:
+        return HttpResponseRedirect('/stories/all/')
+    if request.method == 'POST':
+        file = request.FILES.get('load_file')
+        try:
+            content = txt_to_ssr(file.readlines())
+            rewrite_txt_content(branch, content)
+        except:
+            pass
+    content = get_txt_content(branch)
+    res = {'content': content, 'story': branch}
+    res.update(csrf(request))
+    return HttpResponseRedirect('/stories/editor/'+str(branch_id))
+
+@login_required
 @render_to('stories.html')
 def all_stories(request):
-    res = {'title':'Нові оповідання'}
-    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-date_add', request.POST.get('page')))
+    res = {'title': 'Нові оповідання', 'search': request.POST.get('search')}
+    search = ''
+    if request.POST.get('search'):
+        search = request.POST.get('search')
+    res.update(get_subgenres_and_stories(request.POST.get('genres'), '-date_add', request.POST.get('page'),
+                                         search))
     res.update(csrf(request))
     return res
 
 @login_required
 @render_to('stories.html')
 def best_stories(request):
-    res = {'title':'Кращі оповідання', 'request':request}
+    res = {'title': 'Кращі оповідання', 'request':request}
     res.update(get_subgenres_and_stories(request.POST.get('genres'), '-rating', request.POST.get('page')))
     res.update(csrf(request))
     return res
 
 @login_required
 @render_to('stories.html')
-def votes(request, user_id = 0):
+def votes(request, user_id=0):
     if user_id == 0: user_id = request.user.id
     def getStories(writer_vote): return Story.objects.get(id=writer_vote.story_id)
     votes = map(getStories,WriterVote.objects.filter(user_id = request.user.id))
-    return {'stories':votes, 'title':'Проголосовані оповідання'}
+    return {'stories': votes, 'title': 'Проголосовані оповідання'}
 
 @login_required
 @render_to('stories.html')
-def favorites(request, user_id = 0):
+def favorites(request, user_id=0):
     if user_id == 0: user_id = request.user.id
     def getStories(writer_vote): return Story.objects.get(id=writer_vote.story_id)
-    votes = map(getStories,WriterFavorite.objects.filter(user_id = request.user.id))
-    return {'stories':votes, 'title':'Вибрані оповідання'}
+    votes = map(getStories, WriterFavorite.objects.filter(user_id = request.user.id))
+    return {'stories': votes, 'title': 'Вибрані оповідання'}
 
 @login_required
 @render_to('stories.html')
@@ -167,7 +229,7 @@ def branch_request_add(request, branch_id=0):
     br.comment_message = request.POST['comment']
     br.request_user = request.user
     br.save()
-    return HttpResponseRedirect('/stories/story/'+str(b.story.id)+'/')
+    return HttpResponseRedirect('/stories/story/'+str(b.id)+'/')
 
 @login_required
 @render_to('add_branch.html')
@@ -184,7 +246,7 @@ def branch_add(request, req_id=0):
             b = Branch()
             b.language_id = int(request.POST['language'])
             b.story = req.branch.story
-            b.user = request.user
+            b.user = req.request_user
             b.title = request.POST['title']
             b.poster = request.FILES.get('poster')
             b.description = request.POST['description']
@@ -201,38 +263,38 @@ def branch_add(request, req_id=0):
 
 @login_required
 @render_to('edit_story.html')
-def edit_story(request, story_id=0):
-    instance=Story.objects.get(id=story_id)
+def edit_story(request, branch_id=0):
+    branch = Branch.objects.get(id=branch_id)
     if request.method == 'POST':
-        pass
-    #    form = StoryForm(request.user, request.POST, request.FILES)
-    #    if form.is_valid():
-    #        if instance.user_id != request.user.id:
-    #            return HttpResponseRedirect('/stories/all/')
-    #        form.setStoryData(story_id)
-    #        form.setUserId(request.user.id)
-    #        form.save()
-    #        return HttpResponseRedirect('/stories/story/'+str(story_id))
-    #else:
-    #    if instance.user_id == request.user.id:
-    #        form = StoryForm(request.user,instance=instance)
-    #    else:
-    #        return HttpResponseRedirect('/stories/all/')
-    res = {'story': instance, 'title': 'Редагування оповідання', 'languages':Language.objects.all()}
+        if not request.POST['title'] or not request.POST['description'] or not request.POST['language']:
+            pass
+        else:
+            if branch.story.user_id != request.user.id:
+                return HttpResponseRedirect('/stories/all/')
+            branch.title = request.POST['title']
+            branch.description = request.POST['description']
+            branch.language.id = int(request.POST['language'])
+            if request.FILES.get('poster'):
+                branch.poster = request.FILES.get('poster')
+            branch.save()
+            return HttpResponseRedirect('/stories/story/'+str(branch.id))
+    res = {'branch': branch, 'title': 'Редагування оповідання', 'languages':Language.objects.all()}
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res
 
 @login_required
 @render_to('story.html')
-def story(request, story_id=0):
-    if not len(WriterRead.objects.filter(user_id=request.user.id,story_id=story_id)):
-            WriterRead.objects.create(user_id=request.user.id,story_id=story_id)
+def story(request, branch_id=0):
+    branch = Branch.objects.get(id = branch_id)
+    if not len(WriterRead.objects.filter(user_id=request.user.id,story_id=branch.story.id)):
+            WriterRead.objects.create(user_id=request.user.id,story_id=branch.story.id)
     res = {
-             'story': Story.objects.filter(id = story_id)[0],
-             'vote': not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)),
-             'favorite': not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)),
+             'branch': branch,
+             'vote': not len(WriterVote.objects.filter(user_id=request.user.id,story_id=branch.story.id)),
+             'favorite': not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=branch.story.id)),
              'user': request.user,
+             'similar_stories': get_similar_stories(branch),
           }
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
@@ -240,34 +302,34 @@ def story(request, story_id=0):
 
 @login_required
 def vote_story(request, story_id, vote_count):
-    if story_id:
-        if not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)):
-            WriterVote.objects.create(user_id=request.user.id,story_id=story_id, count=vote_count)
-            s = Story.objects.get(id=story_id)
-            s.voteCount = s.voteCount + 1
-            s.rating = s.rating + int(vote_count)
-            s.save()
-    return HttpResponseRedirect('/stories/story/'+str(story_id))
+    s = Story.objects.get(id=story_id)
+    if not len(WriterVote.objects.filter(user_id=request.user.id,story_id=story_id)):
+        WriterVote.objects.create(user_id=request.user.id,story_id=story_id, count=vote_count)
+        s.voteCount += 1
+        s.rating += int(vote_count)
+        s.save()
+    return HttpResponseRedirect('/stories/story/'+str(s.story_version.all()[0].id))
 
 @login_required
 def favorite_story(request, story_id):
     if story_id:
         if not len(WriterFavorite.objects.filter(user_id=request.user.id,story_id=story_id)):
             WriterFavorite.objects.create(user_id=request.user.id,story_id=story_id)
-    return HttpResponseRedirect('/stories/story/'+str(story_id))
+    s = Story.objects.get(id=story_id)
+    return HttpResponseRedirect('/stories/story/'+str(s.story_version.all()[0].id))
 
 
 @login_required
 @render_to('story_history.html')
-def story_history(request, story_id=0):
-    story = Story.objects.get(id=story_id)
-    res = {'story': story}
+def story_history(request, branch_id=0):############################   history from story_id to branch_id
+    branch = Branch.objects.get(id=branch_id)
+    res = {'branch': branch}
     res.update(get_subgenres(request.POST.get('genres')))
     return res
 
 @login_required
 @render_to('commit_info.html')
-def commit_info(request, story_id=0, commit=0):
+def commit_info(request, branch_id=0, commit=0):
     commit = Commit.objects.get(id=commit)
     res = {'commit': commit, 'commit_info': get_commit_info(commit.branch, commit.code)}
     res.update(get_subgenres(request.POST.get('genres')))

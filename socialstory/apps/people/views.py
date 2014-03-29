@@ -15,8 +15,8 @@ def index(request):
 def friend_all(request):
     requests_user_friend1 = Friends.objects.filter(user1 = request.user.id)
     requests_user_friend2 = Friends.objects.filter(user2 = request.user.id)
-    requests_user_friend1 = map(lambda u: u.user2.writer, requests_user_friend1)
-    requests_user_friend2 = map(lambda u: u.user1.writer, requests_user_friend2)
+    requests_user_friend1 = map(lambda u: u.user2.writer_user, requests_user_friend1)
+    requests_user_friend2 = map(lambda u: u.user1.writer_user, requests_user_friend2)
     friends = list(set(requests_user_friend1))
     for u in requests_user_friend2:
         friends.append(u)
@@ -28,8 +28,8 @@ def friend_all(request):
 def request_all(request):
     people_to = FriendsRequests.objects.filter(user_from = request.user)
     people_from = FriendsRequests.objects.filter(user_to = request.user)
-    people_to = map(lambda u: u.user_to.writer, people_to)
-    people_from = map(lambda u: u.user_from.writer, people_from)
+    people_to = map(lambda u: u.user_to.writer_user, people_to)
+    people_from = map(lambda u: u.user_from.writer_user, people_from)
     return { 'title': 'Заявки', 'show_path': 'people/show_request.html',
              'active_page': 'request_all',
              'people_to': people_to,

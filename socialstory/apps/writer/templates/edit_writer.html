@@ -1,22 +1,39 @@
 {% extends "base.html" %}
 
-{% block title %}{{ user.username }}{% endblock %}
+{% block title %}{{ writer.user.username }}{% endblock %}
 
 {% block content  %}
         <div class="fieldWrapper">
 <form method="post" action="/writer/edit/" enctype="multipart/form-data">
-            <fieldset>
-                <legend>Edit writer</legend>
+                <legend>Редагувати інформацію</legend>
                 {% csrf_token %}
-                <div class="fieldWrapper">
-                    <div class="form-actions">
-                        {{ form.as_p }}
-                        <div class="controls">
-                            <button class="btn btn-primary" type="submit">Add</button>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+                <table class="table">
+                <tr>
+                    <td>Ім'я</td>
+                    <td><input type="text" name="first_name" size="40" value="{{ writer.user.first_name }}" ></td>
+                </tr>
+                <tr>
+                    <td>Прізвище</td>
+                    <td><input type="text" name="last_name" size="40" value="{{ writer.user.last_name }}" ></td>
+                </tr>
+                <tr>
+                    <td>Псевдонім</td>
+                    <td><input type="text" name="username" size="40" value="{{ writer.user.username }}" ></td>
+                </tr>
+                <tr>
+                    <td>Статус</td>
+                    <td><input type="text" name="status" size="40" value="{{ writer.status }}" ></td>
+                </tr>
+                <tr>
+                    <td>Фотографія</td>
+                    <td>( Зараз: {{ writer.picture.url }})<input type="file" name="picture"></td>
+                </tr>
+                <tr>
+                    <td>Опис</td>
+                    <td><textarea name="biography" cols="40" rows="3">{{ writer.biography }}</textarea></td>
+                </tr>
+            </table>
+                <button class="btn btn-primary" type="submit">Зберегти</button>
         </form>
         </div>
 {% endblock %}

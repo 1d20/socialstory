@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from apps.writer.forms import WriterForm
 from django.core.context_processors import csrf
 from utils.decorators import render_to
 from django.http import HttpResponse
@@ -16,33 +15,75 @@ def index(request):
 @login_required
 @render_to('writer.html')
 def writer(request, user_id=1):
-    return {'writer': Writer.objects.filter(user_id=user_id)[0], 'user_id':request.user.id}
+    count = 2
+    comments = Comments.objects.filter(user=request.user)[:count]
+    notes = Notes.objects.filter(user=request.user)[:count]
+    marks = Marks.objects.filter(user=request.user)[:count]
+    res = {
+        'writer': Writer.objects.filter(user_id=user_id)[0],
+        'user_id': request.user.id,
+        'comments': comments,
+        'notes': notes,
+        'marks': marks,
+    }
+    return res
+
+@login_required
+@render_to('list.html')
+def comments(request, user_id=1):
+    comments = Comments.objects.filter(user_id=user_id)
+    res = {
+        'writer': Writer.objects.filter(user_id=user_id)[0],
+        'show_path': 'writer/comments.html',
+        'active_page': 'comments',
+        'comments': comments,
+    }
+    return res
+
+@login_required
+@render_to('list.html')
+def notes(request, user_id=1):
+    notes = Notes.objects.filter(user_id=user_id)
+    res = {
+        'writer': Writer.objects.filter(user_id=user_id)[0],
+        'show_path': 'writer/notes.html',
+        'active_page': 'notes',
+        'notes': notes,
+    }
+    return res
+
+@login_required
+@render_to('list.html')
+def marks(request, user_id=1):
+    marks = Marks.objects.filter(user_id=user_id)
+    res = {
+        'writer': Writer.objects.filter(user_id=user_id)[0],
+        'show_path': 'writer/marks.html',
+        'active_page': 'marks',
+        'marks': marks,
+    }
+    return res
 
 @login_required
 @render_to('edit_writer.html')
 def edit_writer(request):
     if request.method == 'POST':
-        form = WriterForm(request.user, request.POST, request.FILES)
-        if form.is_valid():
-            writer = Writer.objects.get(user_id = request.user.id)
-            writer.status=form.cleaned_data['status']
-            if form.cleaned_data['picture'] == 'user_pictures/default.jpg':
-                form.cleaned_data['picture'] = writer.picture
-            writer.picture=form.cleaned_data['picture']
-            writer.biography=form.cleaned_data['biography']
-            writer.save()
-            return HttpResponseRedirect('/')
-    args={}
-    args.update(csrf(request))
-    writer = Writer.objects.filter(user_id = request.user.id)[0]
-    writerForm = WriterForm(request.user, initial={
-        'status': writer.status,
-        'biography': writer.biography,
-        'picture': writer.picture
-    })
-    args['form'] = writerForm#, Writer.objects.get(id=Writer.objects.filter(user_id = request.user.id)[0].id) )
-    print args
-    return args
+        writer = Writer.objects.get(user_id=request.user.id)
+        writer.user.first_name = request.POST.get('first_name')
+        writer.user.last_name = request.POST.get('last_name')
+        writer.user.username = request.POST.get('username')
+        writer.status = request.POST.get('status')
+        if request.FILES.get('picture'):
+            writer.picture = request.FILES.get('picture')
+        writer.biography = request.POST.get('biography')
+        writer.user.save()
+        writer.save()
+        return HttpResponseRedirect('/writer/'+str(request.user.id))
+    res = {
+        'writer': Writer.objects.get(user_id = request.user.id)
+    }
+    res.update(csrf(request))
+    return res
 
 @login_required
 def comment_add(request, branch_id=1):

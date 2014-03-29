@@ -45,19 +45,19 @@ class WriterVote(models.Model):
     story = models.ForeignKey('stories.Story', related_name='story_vote')
     count = models.IntegerField(default=1)
     def __unicode__(self):
-        return self.user.username+self.story.title+self.count
+        return self.user.username+str(self.count)
 
 class WriterFavorite(models.Model):
     user = models.ForeignKey('auth.User', related_name='writer_favorite')
     story = models.ForeignKey('stories.Story', related_name='story_favorite')
     def __unicode__(self):
-        return self.user.username+self.story.title
+        return self.user.username
 
 class WriterRead(models.Model):
     user = models.ForeignKey('auth.User', related_name='writer_read')
     story = models.ForeignKey('stories.Story', related_name='story_read')
     def __unicode__(self):
-        return self.user.username+self.story.title
+        return self.user.username
 
 class Setting(models.Model):
     title = models.CharField(max_length=255,default='')

@@ -12,28 +12,28 @@
         {% include 'stories/left_menu.html' %}
     </div>
     <div class="col-lg-10">
-        <form method="post" action="/stories/edit/{{ story_id }}/" enctype="multipart/form-data">
             <fieldset>
-                <legend>{{ title }}</legend>
-                {% csrf_token %}
+                <a href="/stories/story/{{ branch.id }}/">Назад</a>
+                {% for b in branch.story.story_version.all %}
+                    <h4><a href="/stories/edit/{{ b.id }}/">{{ b.title }}</a></h4>
+                {% endfor %}
                 <div class="fieldWrapper">
                     <div class="form-actions">
-                        <h1>Зробити: формочку для кожної гілки + функцію для збереження</h1>
-                        {% for b in story.story_version.all %}
-                        <br/>
-                        <h1>{{ b.title }}</h1>
+                        <h1>{{ branch.title }}</h1>
+                        <form method="post" action="/stories/edit/{{ branch.id }}/" enctype="multipart/form-data">
+                            {% csrf_token %}
                         <table class="table table-striped">
                             <tr>
                                 <td>Title</td>
-                                <td><input type="text" name="title" size="40" value="{{ b.title }}" ></td>
+                                <td><input type="text" name="title" size="40" value="{{ branch.title }}" ></td>
                             </tr>
                             <tr>
                                 <td>Description</td>
-                                <td><textarea name="description" cols="40" rows="3">{{ b.description }}</textarea></td>
+                                <td><textarea name="description" cols="40" rows="3">{{ branch.description }}</textarea></td>
                             </tr>
                             <tr>
                                 <td>Poster</td>
-                                <td>( Зараз: {{ b.poster }})<input type="file" name="poster" value="{{ b.poster }}" ></td>
+                                <td>( Зараз: {{ branch.poster }})<input type="file" name="poster" value="{{ branch.poster }}" ></td>
                             </tr>
                             <tr>
                                 <td>Language</td>
@@ -46,14 +46,11 @@
                                 </td>
                             </tr>
                         </table>
-                        {% endfor %}
-                        <div class="controls">
-                            <button class="btn btn-primary" type="submit">Edit</button>
-                        </div>
+                         <button class="btn btn-primary" type="submit">Зберегти</button>
+                        </form>
                     </div>
                 </div>
             </fieldset>
-        </form>
     </div>
 </div>
 {% endblock %}

@@ -12,23 +12,20 @@
 
         <div class="fieldWrapper">
             <div class="form-actions">
-                {% for b in story.story_version.all %}
-                <br/>
-                <h4>{{ b.title }}(<a href="/writer/{{ b.user.id }}/">{{ b.user }}</a>)</h4>
+                <h4>{{ branch.title }}(<a href="/writer/{{ branch.user.id }}/">{{ branch.user }}</a>)</h4>
                 <table class="table table-striped">
                     <th>Код</th>
                     <th>Коментар</th>
                     <th>Дата</th>
-                    {% for c in b.commit_branch.all %}
+                    {% for c in branch.commit_branch.all %}
                     <tr>
-                       <td><a href="/stories/history/{{ b.id }}/{{ c.id }}/"
+                       <td><a href="/stories/history/{{ branch.id }}/{{ c.id }}/"
                            >{{ c.code }}</a></td>
                         <td>{{ c.title }}</td>
                        <td>{{ c.date_add }}</td>
                     </tr>
                     {% endfor %}
                 </table>
-                {% endfor %}
             </div>
         </div>
     </div>
