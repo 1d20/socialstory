@@ -15,16 +15,19 @@ def get_similar_stories(branch):
     #    sts.append(s.story2)
     #for s in sts2:
     #    sts.append(s.story1)
-    last_stories = story_count - len(sts)
-    for i in range(0, last_stories):
-        sts.append(sts3[i])
-    random.shuffle(sts)
-    for i in range(0, story_count):
-        stories_info.append({
-            'id': sts[i].story_version.all()[0].id,
-            'title': sts[i].story_version.all()[0].title,
-            'poster': sts[i].story_version.all()[0].poster
-        })
+    try:
+        last_stories = story_count - len(sts)
+        for i in range(0, last_stories):
+            sts.append(sts3[i])
+        random.shuffle(sts)
+        for i in range(0, story_count):
+            stories_info.append({
+                'id': sts[i].story_version.all()[0].id,
+                'title': sts[i].story_version.all()[0].title,
+                'poster': sts[i].story_version.all()[0].poster
+            })
+    except:
+        pass
     return stories_info
 
 
