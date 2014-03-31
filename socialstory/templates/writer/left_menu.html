@@ -1,0 +1,11 @@
+<ul class="nav nav-sidebar">
+<li class="{% if active_page == 'comments' %}active{% endif %}">
+    <a href="/writer/comments/{{ writer.user.id }}/">Коментарі</a>
+</li>
+<li class="{% if active_page == 'notes' %}active{% endif %}">
+    <a href="/writer/notes/{{ writer.user.id }}/">Замітки</a>
+</li>
+<li class="{% if active_page == 'marks' %}active{% endif %}">
+    <a href="/writer/marks/{{ writer.user.id }}/">Закладки</a>
+</li>
+</ul>

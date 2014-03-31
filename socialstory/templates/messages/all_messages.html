@@ -7,7 +7,7 @@
         <div class="col-lg-10">
             <p><a href="/writer/{{ message.user.id }}/">{{ message.user }}</a></p>
             <p><b>{{ message.title }}</b> ({{ message.date_add }})
-            {% if not message.is_write %}<font color="RED">NEW</font>{% endif %}</b></p>
+            {% if not message.is_write %}<font color="RED">Непрочитане</font>{% endif %}</b></p>
             <p> {{ message.content }} </p>
             <p><a href="/message/write/{{ message.user.id }}">Написати повідомлення</a></p>
         </div>

@@ -1,39 +1,76 @@
 {% extends "base.html" %}
     {% block title %}{{ story.title }}{% endblock %}
     {% block links %}
-        <link rel="stylesheet" href="/static/medium/css/main.css">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <!--<link rel="stylesheet" href="/static/medium/css/main.css">-->
+        <link rel="stylesheet" href="//ssr.herokuapp.com/css/main.css">
+
         <link rel="stylesheet" href="/static/medium/css/medium-editor.css">
         <link rel="stylesheet" href="/static/medium/css/themes/flat.css">
         <script src="/static/medium/js/medium-editor.js"></script>
     {% endblock %}
 
 {% block content  %}
-<div id="container">
-    <form class="form-inline" role="form" action="/stories/load/file/{{ story.id }}/"  method="post" enctype="multipart/form-data" >
+<div id="">
+    <form role="form" action="/stories/load/file/{{ story.id }}/"  method="post" enctype="multipart/form-data" id="upload-text-form">
         {% csrf_token %}
-        <a href="/stories/story/{{ story.id }}/">Назад</a>
-        <h6>{{ story.title }}
-            <input type="file" name="load_file">
-            <button type="submit" aria-hidden="true">Load</button>
-        </h6>
+        <ul class="nav nav-pills">
+          <li><a href="/stories/story/{{ story.id }}/">Назад</a></li>
+          <li class="disabled"><a href="#">{{ story.title }}</a></li>
+
+          <li class="pull-right">
+            <a class="hover" href="#" onclick="document.querySelector('#upload-text-form').submit(); return false;">Загрузити</a>
+          </li>
+          <li class="pull-right">
+            <a href="#">
+                <input type="file" name="load_file">
+            </a>
+          </li>
+        </ul>
     </form>
 
-    <form class="form-inline" role="form" id="submit" action="/stories/editor/{{ story.id }}/"  method="post" >
-        {% csrf_token %}
-        <h1>{{ story.title }}
-            <button type="submit" aria-hidden="true">Save</button>
-            Publish?<input name="is_publish" type="checkbox">
-            <input type="text" size="3" name="commit_message" value="nc">
-        </h1>
-        <div class="editable" id="content" name="content">{{ content|safe }}</div>
-    </form>
+    <form role="form" id="submit" action="/stories/editor/{{ story.id }}/"  method="post" >
+            {% csrf_token %}
+            <input name="is_publish" type="checkbox" style="display: none;">
+            <div id="form-fixed" class="btn-group">
+                <button class="btn btn-default " type="submit">Зберегти</button>
+                <!-- Button trigger modal -->
+                <a class="btn btn-primary" data-toggle="modal" data-target="#publishModal">
+                  Опублiкувати
+                </a>
+
+                <input type="hidden" name="commit_message">
+            </div>
+        <br><br>
+        <hr>
+            <div class="editable" id="content" name="content">{{ content|safe }}</div>
+        </form>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="publishModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="publishModalLabel">Коментар до публiкацii</h4>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control" name="commit_text">Планові зміни</textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Вiдмiна</button>
+                <button type="button" class="btn btn-primary" id="publishMe">Опублiкувати</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 </div>
 
 <script>
 
 var editor = new MediumEditor('.editable', {
-    //anchorInputPlaceholder: 'Начните писать свою историю!',
+    //anchorInputPlaceholder: 'Почніть писати свою історію!',
     buttons: ['bold', 'italic', 'underline', 'quote', 'header1', 'pre'],
     buttonLabels: 'fontawesome',
     // diffLeft: 25,
@@ -42,7 +79,7 @@ var editor = new MediumEditor('.editable', {
     secondHeader: 'h2',
     // delay: 300,
     // targetBlank: true
-    placeholder: 'Начните писать свою историю!'
+    placeholder: 'Почніть писати свою історію!'
 });
 
 var submit = document.getElementById('submit');
@@ -64,6 +101,19 @@ submit.onsubmit = function(e) {
     // return false;
     this.submit();
 }
+
+$('#publishMe').on('click', function (e) {
+        e.preventDefault();
+
+        var form = $('#submit');
+
+        $('[name="is_publish"]', form).prop('checked', true);
+
+        $('[name="commit_message"]', form).val($('[name="commit_text"]').text());
+
+        form.submit();
+
+    });
 
 </script>
 {% endblock %}

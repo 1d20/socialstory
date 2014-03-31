@@ -1,4 +1,5 @@
 __author__ = 'Detonavomek'
+#-*- coding: utf-8 -*-
 import os, subprocess
 from source.settings import MEDIA_ROOT, PROJECT_PATH, STATIC_ROOT
 from apps.stories.models import *
@@ -34,7 +35,7 @@ def create_branch(branch):
     os.chdir(STORY_FOLDER)
     os.system("git init")
     os.system("touch "+TEMPLATE_FILE_NAME)
-    commit(branch, 'branch init')
+    commit(branch, 'Створення оповідання')
     os.chdir(PROJECT_PATH)
 
 def get_last_publish_commit(branch):

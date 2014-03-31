@@ -1,13 +1,15 @@
-<div class="nav nav-list">
-    <ul class="list-group">
+<div class="sidebar">
+    <ul class="nav nav-sidebar">
         {% regroup subgenres by genre.title as genres %}
         {% for genre in genres %}
-            <li class="list-group-item">{{ genre.grouper }}</li>
+            <li class="nav-header">{{ genre.grouper }}</li>
             {% for subgenre in genre.list %}
                 <form action="/stories/all/"  method="post" >
                 {% csrf_token %}
-                    <ul class="">
-                        <li class="list-group-item">
+                    <ul class="nav nav-sidebar">
+                        <li class="nav-header">
+
+
                             <input type="hidden" name="genres" value=
                                     "{{ subgenre.id }},{% for ssg in selected_subgenres %}{{ ssg.id }},{% endfor %}"/>
                             <input type="submit" class="btn btn-link" value="{{ subgenre.title }}"/>

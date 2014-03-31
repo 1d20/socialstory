@@ -1,0 +1,9 @@
+<h3>Закладки:</h3>
+<table class="table">
+    {% for m in marks %}
+        <tr>
+            <td><img src="{{ m.branch.poster.url }}" width="25" height="40" /></td>
+            <td><i class="fa fa-bookmark-o"></i> {{ m.branch.title }}</td>
+        </tr>
+    {% endfor %}
+</table>

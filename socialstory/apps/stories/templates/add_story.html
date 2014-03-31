@@ -16,30 +16,41 @@
             <fieldset>
                 <legend>Нове оповідання</legend>
                 {% csrf_token %}
-                <div class="fieldWrapper">
-                    <div class="form-actions">
-                        <p>Title: <input type="text" name="title" size="40" ></p>
-                        <p>Description: <textarea name="description" cols="40" rows="3"></textarea></p>
-                        <p>Poster: <input type="file" name="poster" ></p>
-                        <p>Language:
-                            <select name="language">
-                                {% for l in languages %}
-                              <option value="{{ l.id }}">{{ l.language }}</option>
-                                {% endfor %}
-                            </select>
-                        </p>
-                        <p>Genres:
-                            <select name="story_subgenres" multiple>
-                                {% for s in all_subgenres %}
-                              <option value="{{ s.id }}">{{ s.title }}</option>
-                                {% endfor %}
-                            </select>
-                        </p>
-                        <div class="controls">
-                            <button class="btn btn-primary" type="submit">Add</button>
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-striped">
+                            <tr>
+                                <td>Назва</td>
+                                <td><input class="form-control" type="text" name="title" size="40" ></td>
+                            </tr>
+                            <tr>
+                                <td>Опис</td>
+                                <td><textarea class="form-control" name="description" cols="40" rows="3"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Зображення</td>
+                                <td><input class="form-control" type="file" name="poster" ></td>
+                            </tr>
+                            <tr>
+                                <td>Мова</td>
+                                <td>
+                                    <select class="form-control" name="language">
+                                    {% for l in languages %}
+                                        <option value="{{ l.id }}">{{ l.language }}</option>
+                                    {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        <tr>
+                                <td>Жанри</td>
+                                <td>
+                                    <select class="form-control" name="story_subgenres" multiple>
+                                        {% for s in all_subgenres %}
+                                      <option value="{{ s.id }}">{{ s.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                <button class="btn btn-primary" type="submit">Додати</button>
             </fieldset>
         </form>
     </div>

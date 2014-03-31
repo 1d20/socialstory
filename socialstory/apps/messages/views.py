@@ -6,6 +6,8 @@ from django.core.context_processors import csrf
 from models import Messages
 from utils.decorators import render_to
 from apps.stories.models import BranchRequests
+from apps.writer.models import *
+from apps.stories.models import *
 
 def get_messages(user):
     messages_tmp, messages = [], []
@@ -67,6 +69,45 @@ def all_request(request):
              'my_req': my_req }
 
 @login_required
+@render_to('list_messages.html')
+def all_comments(request):
+    branches = Branch.objects.filter(user = request.user).all()
+    comments = []
+    for b in branches:
+        cs = Comments.objects.filter(branch=b, like_writer=False, private=False).all()
+        for c in cs:
+            comments.append({
+                'id': c.id,
+                'paragraph_index': c.paragraph_index,
+                'content': c.content,
+                'date_add': c.date_add,
+                'branch_title': c.branch.title,
+                'writer_name': c.user.username,
+                'writer_avatar': c.user.writer_user.picture.url,
+            })
+
+    changes = []
+    for b in branches:
+        cs = Comments.objects.filter(branch=b, like_writer=False, private=True).all()
+        for c in cs:
+            changes.append({
+                'id': c.id,
+                'paragraph_index': c.paragraph_index,
+                'content': c.content,
+                'date_add': c.date_add,
+                'branch_title': c.branch.title,
+                'writer_name': c.user.username,
+                'writer_avatar': c.user.writer_user.picture.url,
+            })
+    res = {
+        'show_path': 'messages/comments.html',
+        'active_page': 'all_comments',
+        'comments': comments,
+        'changes': changes,
+    }
+    return res
+
+@login_required
 @render_to('send_message.html')
 def write_message(request, user_id):###### new messages
     component = User.objects.get(id=user_id)
@@ -74,6 +115,10 @@ def write_message(request, user_id):###### new messages
     mess_to = Messages.objects.filter(user_to = component, user_from = request.user).all()
     messages = list(set(mess_from))
     for m in mess_to:
+        m.is_write = True
+        m.save()
+        messages.append(m)
+    for m in mess_from:
         messages.append(m)
     messages = sorted(messages, key=lambda messages: messages.date_add)
     messages = list(reversed(messages))

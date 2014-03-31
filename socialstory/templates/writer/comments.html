@@ -1,0 +1,10 @@
+<h3>Коментарі:</h3><br/>
+<table class="table">
+    {% for c in comments %}
+        <tr>
+            <td><img src="{{ c.branch.poster.url }}" width="25" height="40" /></td>
+            <td>{{ c.branch.title }}</td>
+            <td class="text-muted"><i class="fa fa-comment-o"></i> {{ c.content }}</td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,12 @@
+<h3>Замітки:</h3>
+    <table class="table">
+        {% for n in notes %}
+            <tr>
+                <td><img src="{{ n.branch.poster.url }}" width="25" height="40" /></td>
+                <td>{{ n.branch.title }}</td>
+                <td class="text-muted">
+                    <blockquote>{{ n.content|truncatechars:40 }}</blockquote>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>

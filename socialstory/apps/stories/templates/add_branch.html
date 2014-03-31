@@ -18,18 +18,18 @@
                 {% csrf_token %}
                 <div class="fieldWrapper">
                     <div class="form-actions">
-                        <p>Title: <input type="text" name="title" size="40" ></p>
-                        <p>Description: <textarea name="description" cols="40" rows="3"></textarea></p>
-                        <p>Poster: <input type="file" name="poster" ></p>
-                        <p>Language:
-                            <select name="language">
+                        <p>Назва: <input class="form-control" type="text" name="title" size="40" ></p>
+                        <p>Опис: <textarea class="form-control" name="description" cols="40" rows="3"></textarea></p>
+                        <p>Зображення: <input class="form-control" type="file" name="poster" ></p>
+                        <p>Мова:
+                            <select class="form-control" name="language">
                                 {% for l in languages %}
                               <option value="{{ l.id }}">{{ l.language }}</option>
                                 {% endfor %}
                             </select>
                         </p>
                         <div class="controls">
-                            <button class="btn btn-primary" type="submit">Add</button>
+                            <button class="btn btn-primary" type="submit">Додати</button>
                         </div>
                     </div>
                 </div>

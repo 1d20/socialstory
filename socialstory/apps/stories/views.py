@@ -72,7 +72,7 @@ def user_stories(request, user_id=1):
     except EmptyPage:
         stories_list = paginator.page(paginator.num_pages)
     res = {'stories': stories_list,
-            'title': 'Оповідання '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
+            'title': 'Авторські оповідання '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res
@@ -81,7 +81,6 @@ def user_stories(request, user_id=1):
 @render_to('stories.html')
 def user_fav_stories(request, user_id=1):
     wfs = WriterFavorite.objects.filter(user_id=user_id).all()
-    #ss =#############################################################ss.el => ss.el.story####################
     ss = map(lambda wf: wf.story , wfs)
     paginator = Paginator(ss, 10)
     try:
@@ -91,7 +90,28 @@ def user_fav_stories(request, user_id=1):
     except EmptyPage:
         stories_list = paginator.page(paginator.num_pages)
     res = {'stories': stories_list,
-            'title': 'Оповідання '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
+            'title': 'Вибрані оповідання '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
+    res.update(get_subgenres(request.POST.get('genres')))
+    res.update(csrf(request))
+    return res
+
+@login_required
+@render_to('stories.html')
+def user_trans_stories(request, user_id=1):
+    bs = Branch.objects.filter(user_id=user_id).all()
+    ss = []
+    for b in bs:
+        if b.story not in ss:
+            ss.append(b.story)
+    paginator = Paginator(ss, 10)
+    try:
+        stories_list = paginator.page(request.POST.get('page'))
+    except PageNotAnInteger:
+        stories_list = paginator.page(1)
+    except EmptyPage:
+        stories_list = paginator.page(paginator.num_pages)
+    res = {'stories': stories_list,
+            'title': 'Переклади '+str(Writer.objects.filter(user_id=user_id).all()[0].user.username), }
     res.update(get_subgenres(request.POST.get('genres')))
     res.update(csrf(request))
     return res
@@ -116,6 +136,7 @@ def editor(request, branch_id=0):
         print request.POST.get('content')
         content = request.POST.get('content')
         #print request.POST
+        print request.POST.get('is_publish')
         rewrite_txt_content(branch, content)
         if request.POST.get('is_publish'):
             commit(branch, request.POST['commit_message'])

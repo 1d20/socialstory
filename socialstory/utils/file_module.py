@@ -15,6 +15,9 @@ def rewrite_txt_content(branch, content):
     file_path = GLOBAL_STORY_FILE.format(str(branch.id))
 
     f = open(file_path, 'w')
-    f.write(content)
+    try:
+        f.write(content.encode('utf-8'))
+    except:
+        f.write(content)
     f.close()
     return True

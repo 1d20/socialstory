@@ -1,0 +1,29 @@
+<h3>Нові коментарі:</h3><br/>
+<table class="table">
+    {% for c in comments %}
+        <tr>
+            <td><a href="/writer/{{ c.writer.id }}"><img src="{{ c.writer_avatar }}" width="25" height="40" />{{ c.writer_name }}</a></td>
+            <td>{{ c.paragraph_index }}</td>
+            <td>{{ c.branch_title }}</td>
+            <td>{{ c.content }}</td>
+            <td>{{ c.date_add }}</td>
+            <td><a href="/writer/comment/submit/ok/{{ c.id }}/" ><i style="color:GREEN" class="glyphicon glyphicon-ok-sign"></i></a></td>
+            <td><a href="/writer/comment/submit/no/{{ c.id }}/" ><i style="color:RED" class="glyphicon glyphicon-remove-sign"></i></a></td>
+        </tr>
+    {% endfor %}
+</table>
+<br/>
+<h3>Виправлення:</h3><br/>
+<table class="table">
+    {% for c in changes %}
+        <tr>
+            <td><a href="/writer/{{ c.writer.id }}"><img src="{{ c.writer_avatar }}" width="25" height="40" />{{ c.writer_name }}</a></td>
+            <td>{{ c.paragraph_index }}</td>
+            <td>{{ c.branch_title }}</td>
+            <td>{{ c.content }}</td>
+            <td>{{ c.date_add }}</td>
+            <td><a href="/writer/comment/submit/ok/{{ c.id }}/" ><i style="color:GREEN" class="glyphicon glyphicon-ok-sign"></i></a></td>
+            <td><a href="/writer/comment/submit/no/{{ c.id }}/" ><i style="color:RED" class="glyphicon glyphicon-remove-sign"></i></a></td>
+        </tr>
+    {% endfor %}
+</table>

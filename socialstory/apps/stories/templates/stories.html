@@ -32,16 +32,18 @@
                     <th>Жанри</th>
                     <th>Мови</th>
                     <th>Рейтинг</th>
+                    <th>Дата</th>
                     {% for story in stories.object_list %}
                     <tr>
                        <td><a href="/stories/story/{{ story.story_version.all.0.id }}/">{{ story.story_version.all|first }}</a></td>
                        <td><a href="/writer/{{ story.user_id }}/">{{ story.user }}</a></td>
                         <td>{{ story.genres.all|join:', ' }}</td>
                         <td>{% for b in story.story_version.all %}
-                            {{ b.language }}
+                            <small>{{ b.language }}&nbsp;&nbsp;&nbsp;</small>
                             {% endfor %}
                         </td>
                        <td>{{ story.rating }}({{ story.voteCount }})</td>
+                        <td>{{ story.date_add|date:"d.m.y h:i:s"|lower }}</td>
                     </tr>
                     {% endfor %}
                 </table>

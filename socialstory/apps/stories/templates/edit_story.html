@@ -13,10 +13,13 @@
     </div>
     <div class="col-lg-10">
             <fieldset>
-                <a href="/stories/story/{{ branch.id }}/">Назад</a>
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active" ><a href="/stories/story/{{ branch.id }}/">Назад</a></li>
                 {% for b in branch.story.story_version.all %}
-                    <h4><a href="/stories/edit/{{ b.id }}/">{{ b.title }}</a></h4>
+                    <li><a href="/stories/edit/{{ b.id }}/">{{ b.title }}</a></li>
                 {% endfor %}
+                </ul>
+
                 <div class="fieldWrapper">
                     <div class="form-actions">
                         <h1>{{ branch.title }}</h1>
@@ -24,21 +27,21 @@
                             {% csrf_token %}
                         <table class="table table-striped">
                             <tr>
-                                <td>Title</td>
-                                <td><input type="text" name="title" size="40" value="{{ branch.title }}" ></td>
+                                <td>Назва</td>
+                                <td><input class="form-control" type="text" name="title" size="40" value="{{ branch.title }}" ></td>
                             </tr>
                             <tr>
-                                <td>Description</td>
-                                <td><textarea name="description" cols="40" rows="3">{{ branch.description }}</textarea></td>
+                                <td>Опис</td>
+                                <td><textarea class="form-control" name="description" cols="40" rows="3">{{ branch.description }}</textarea></td>
                             </tr>
                             <tr>
-                                <td>Poster</td>
-                                <td>( Зараз: {{ branch.poster }})<input type="file" name="poster" value="{{ branch.poster }}" ></td>
+                                <td>Зображення</td>
+                                <td>( Зараз: {{ branch.poster }})<input class="form-control" type="file" name="poster" value="{{ branch.poster }}" ></td>
                             </tr>
                             <tr>
-                                <td>Language</td>
+                                <td>Мова</td>
                                 <td>
-                                    <select name="language">
+                                    <select class="form-control" name="language">
                                     {% for l in languages %}
                                         <option value="{{ l.id }}">{{ l.language }}</option>
                                     {% endfor %}

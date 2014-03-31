@@ -8,4 +8,4 @@ class Messages(models.Model):
     is_write = models.BooleanField(default=False)
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
     def __unicode__(self):
-        return self.user_from.username+self.user_to.username
+        return self.user_from.username+' '+self.user_to.username

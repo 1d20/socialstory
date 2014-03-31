@@ -10,19 +10,19 @@
                 <table class="table">
                 <tr>
                     <td>Ім'я</td>
-                    <td><input type="text" name="first_name" size="40" value="{{ writer.user.first_name }}" ></td>
+                    <td><input class="form-control" type="text" name="first_name" size="40" value="{{ writer.user.first_name }}" ></td>
                 </tr>
                 <tr>
                     <td>Прізвище</td>
-                    <td><input type="text" name="last_name" size="40" value="{{ writer.user.last_name }}" ></td>
+                    <td><input class="form-control" type="text" name="last_name" size="40" value="{{ writer.user.last_name }}" ></td>
                 </tr>
                 <tr>
                     <td>Псевдонім</td>
-                    <td><input type="text" name="username" size="40" value="{{ writer.user.username }}" ></td>
+                    <td><input class="form-control" type="text" name="username" size="40" value="{{ writer.user.username }}" ></td>
                 </tr>
                 <tr>
                     <td>Статус</td>
-                    <td><input type="text" name="status" size="40" value="{{ writer.status }}" ></td>
+                    <td><input class="form-control" type="text" name="status" size="40" value="{{ writer.status }}" ></td>
                 </tr>
                 <tr>
                     <td>Фотографія</td>
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>Опис</td>
-                    <td><textarea name="biography" cols="40" rows="3">{{ writer.biography }}</textarea></td>
+                    <td><textarea class="form-control" name="biography" cols="40" rows="3">{{ writer.biography }}</textarea></td>
                 </tr>
             </table>
                 <button class="btn btn-primary" type="submit">Зберегти</button>

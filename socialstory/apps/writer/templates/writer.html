@@ -12,19 +12,20 @@
             <div class="col-lg-4">
                 <img src="{{ writer.picture.url }}" width="350" height="450" />
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-5">
                 <p><b>{{ writer.user.username }}</b> {{ writer.user.first_name }} {{ writer.user.last_name }}</p>
                 <p> Статус: {{ writer.status }} </p>
                 Оповідання:
                 <a href="/stories/user/{{user_id}}">Авторські</a>,
-                <a href="/stories/user/fav/{{user_id}}">Вибрані</a></br></br>
+                <a href="/stories/user/fav/{{user_id}}">Вибрані</a>,
+                <a href="/stories/user/trans/{{user_id}}">Переклади</a></br></br>
                 <p><a href="/writer/comments/{{ writer.user.id }}">Коментарі</a>:
                     <table class="table">
                     {% for c in comments %}
                         <tr>
                             <td><img src="{{ c.branch.poster.url }}" width="25" height="40" /></td>
                             <td>{{ c.branch.title }}</td>
-                            <td>{{ c.content }}</td>
+                            <td class="text-muted"><i class="fa fa-comment-o"></i> {{ c.content }}</td>
                         </tr>
                     {% endfor %}
                     </table>
@@ -35,7 +36,9 @@
                         <tr>
                             <td><img src="{{ n.branch.poster.url }}" width="25" height="40" /></td>
                             <td>{{ n.branch.title }}</td>
-                            <td>{{ n.content }}</td>
+                            <td class="text-muted">
+                                <blockquote>{{ n.content|truncatechars:40 }}</blockquote>
+                            </td>
                         </tr>
                     {% endfor %}
                     </table>
@@ -45,8 +48,7 @@
                     {% for m in marks %}
                         <tr>
                             <td><img src="{{ m.branch.poster.url }}" width="25" height="40" /></td>
-                            <td>{{ m.branch.title }}</td>
-                            <td>{{ m.content }}</td>
+                            <td><i class="fa fa-bookmark-o"></i> {{ m.branch.title }}</td>
                         </tr>
                     {% endfor %}
                     </table>

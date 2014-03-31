@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.serializers.json import DjangoJSONEncoder
 from django.core.context_processors import csrf
 from utils.decorators import render_to
 from django.http import HttpResponse
@@ -16,7 +17,7 @@ def index(request):
 @render_to('writer.html')
 def writer(request, user_id=1):
     count = 2
-    comments = Comments.objects.filter(user=request.user)[:count]
+    comments = Comments.objects.filter(user=request.user, like_writer=True)[:count]
     notes = Notes.objects.filter(user=request.user)[:count]
     marks = Marks.objects.filter(user=request.user)[:count]
     res = {
@@ -31,7 +32,7 @@ def writer(request, user_id=1):
 @login_required
 @render_to('list.html')
 def comments(request, user_id=1):
-    comments = Comments.objects.filter(user_id=user_id)
+    comments = Comments.objects.filter(user_id=user_id, like_writer=True)
     res = {
         'writer': Writer.objects.filter(user_id=user_id)[0],
         'show_path': 'writer/comments.html',
@@ -96,8 +97,13 @@ def comment_add(request, branch_id=1):
         c.paragraph_index = request.POST['paragraph_index']
         c.first_char = request.POST['first_char']
         c.last_char = request.POST['last_char']
+        print request.POST.get('private')
         if request.POST.get('private'):
-            c.private=True
+            c.private = True
+        else:
+            c.private = False
+
+        #c.private = True
         c.save()
     else:
         data = {'result': 'error(not POST request)' }
@@ -121,6 +127,7 @@ def note_add(request, branch_id=1):
 def mark_add(request, branch_id=1):
     data = {'result': 'ok' }
     if request.method == 'POST':
+        print request.POST
         m = Marks()
         m.branch = Branch.objects.get(id = branch_id)
         m.user = request.user
@@ -129,3 +136,46 @@ def mark_add(request, branch_id=1):
     else:
         data = {'result': 'error(not POST request)' }
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+@login_required
+def comments_get(request, branch_id=1, paragraph_id=1):
+    data = []
+    comments = Comments.objects.filter(branch_id=branch_id, paragraph_index=paragraph_id, like_writer=True).all()
+    for c in comments:
+        data.append({
+            'writer_name': c.user.username,
+            'writer_avatar': c.user.writer_user.picture.url,
+            'content': c.content,
+            'date': str(c.date_add),
+        })
+    return HttpResponse(json.dumps({'data': data}), content_type="application/json")
+
+@login_required
+def comments_count(request, branch_id=1):
+    data = []
+    comments = Comments.objects.filter(branch_id=branch_id, like_writer=True).all()
+    tmp = {}
+    for c in comments:
+        try:
+            tmp[c.paragraph_index] += 1
+        except:
+            tmp[c.paragraph_index] = 1
+    for t in tmp:
+        data.append({
+            'paragraph_index': t,
+            'count': tmp[t],
+        })
+
+    return HttpResponse(json.dumps({'data': data}), content_type="application/json")
+
+@login_required
+def comment_submit_ok(request, comment_id=1):
+    comment = Comments.objects.get(id=comment_id)
+    comment.like_writer = True
+    comment.save()
+    return HttpResponseRedirect('/message/comments/all/')
+
+@login_required
+def comment_submit_no(request, comment_id=1):
+    Comments.objects.get(id=comment_id).delete()
+    return HttpResponseRedirect('/message/comments/all/')

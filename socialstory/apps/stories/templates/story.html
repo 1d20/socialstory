@@ -9,19 +9,23 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            <legend>{{ branch.title }}
-                {% if favorite %}
-                    (<a href="/stories/favorite/{{ branch.story.id }}/">Додати у вибрані</a>)
-                {% endif %}
-                {% if branch.story.user.id == user.id %}
-                    (<a href="/stories/edit/{{ branch.id }}/">Редагувати</a>)
-                    (<a href="/stories/history/{{ branch.id }}/">Історія</a>)<br/>
-                {% endif %}
-                Версії:
-                {% for b in branch.story.story_version.all %}
-                    <a href="/stories/story/{{ b.id }}/">{{ b.title }}</a>,
-                {% endfor %}
-            </legend>
+            <h1 class="page-header">{{ branch.title }}
+                <small>
+                    {% for b in branch.story.story_version.all %}
+                        <a href="/stories/story/{{ b.id }}/">{{ b.title }}{% if branch.story.user.id != b.user.id %}*{%endif%}</a>&nbsp;&nbsp;&nbsp;
+                    {% endfor %}
+                </small>
+                <div class="btn-group">
+                    {% if favorite %}
+                        <a class="btn btn-default" href="/stories/favorite/{{ branch.story.id }}/"><i class="fa fa-star-o"></i> Додати у вибрані</a>
+                    {% endif %}
+                    {% if branch.story.user.id == user.id %}
+                        <a class="btn btn-default" href="/stories/edit/{{ branch.id }}/"><i class="fa fa-pencil-square-o"></i> Редагувати</a>
+                        <a class="btn btn-default" href="/stories/history/{{ branch.id }}/"><i class="fa fa-calendar"></i> Історія</a>
+                    {% endif %}
+                </div>
+            </h1>
+
         </div>
         <div class="col-lg-3">
                 <img src="{{ branch.poster.url }}" width="250" height="400" />
@@ -37,50 +41,74 @@
                     <p> Рейтинг:            {{ branch.story.rating }} </p>
                     <p> Кількість голосів:  {{ branch.story.voteCount }}
                     {% if vote %}<br/>
-                       (<a href="/stories/vote/{{ branch.story.id }}/1/">1 </a>
-                        <a href="/stories/vote/{{ branch.story.id }}/2/">2 </a>
-                        <a href="/stories/vote/{{ branch.story.id }}/3/">3 </a>
-                        <a href="/stories/vote/{{ branch.story.id }}/4/">4 </a>
-                        <a href="/stories/vote/{{ branch.story.id }}/5/">5 </a>)
+                        <div class="btn-toolbar" role="toolbar">
+                          <div class="btn-group"><a class="btn btn-xs btn-danger" href="/stories/vote/{{ branch.story.id }}/1/">1 </a></div>
+                          <div class="btn-group"><a class="btn btn-xs btn-danger" href="/stories/vote/{{ branch.story.id }}/2/">2 </a></div>
+                          <div class="btn-group"><a class="btn btn-xs btn-warning" href="/stories/vote/{{ branch.story.id }}/3/">3 </a></div>
+                          <div class="btn-group"><a class="btn btn-xs btn-warning" href="/stories/vote/{{ branch.story.id }}/4/">4 </a></div>
+                          <div class="btn-group"><a class="btn btn-xs btn-success" href="/stories/vote/{{ branch.story.id }}/5/">5 </a></div>
+                        </div>
                     {% endif %}</p>
-                    <p> Читати:
-                        <lu>
-                            <li>
-                                <a href="/stories/read/{{ branch.id }}/">{{ branch.title }}</a>
-                                {% if branch.user.id == user.id %}
-                                    (<a href="/stories/editor/{{ branch.id }}/">Редагувати текст</a>)
-                                {% endif %}
-                                <form class="form-inline" role="form" action="/stories/branch/request/add/{{ branch.id }}/" method="post" >
-                                    {% csrf_token %}
-                                    ( <textarea name="comment" cols="40" rows="3" >I want to create new branch</textarea>
-                                    <input type="submit" value="Запит на створення гілки"> )
-                                </form>
-                            </li>
-                        </lu></p>
+                    <div class="well">
+                        <h4>
+                            <a href="/stories/read/{{ branch.id }}/">Читати</a>&nbsp;&nbsp;&nbsp;
+                            {% if branch.user.id == user.id %}
+                                <small><a href="/stories/editor/{{ branch.id }}/">Редагувати текст</a></small>
+                            {% endif %}
+                        </h4>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                          Змінити
+                        </button>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <p> Опис: <br/> {{ branch.description }} </p>
             </div>
             <div class="col-lg-6">
                 <p> Подібні: <br/>
                     <table class="table table-striped">
-                        {% for ss in similar_stories %}
                         <tr>
-                           <td>
-                               <a href="/stories/story/{{ ss.id }}/" >
-                                   <img src="{{ ss.poster.url }}" width="50" height="80" />
-                               </a>
-                           </td>
-                            <td>{{ ss.title }}</td>
+                                {% for ss in similar_stories %}
+                            <td>
+                                 <a href="/stories/story/{{ ss.id }}/" >
+                                           <img src="{{ ss.poster.url }}" width="50" height="80" />
+                                       </a>
+                                  </br>{{ ss.title|truncatechars:11 }}
+
+                                </td>
+                                {% endfor %}
                         </tr>
-                        {% endfor %}
                     </table>
                 </p>
+                <div>
+                    <p> Опис: <br/> {{ branch.description }} </p>
+                </div>
             </div>
+
     </div>
     <div class="row">
 
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Внести зміни</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline" role="form" action="/stories/branch/request/add/{{ branch.id }}/" method="post" >
+            {% csrf_token %}
+            <textarea class="form-control" name="comment" cols="40" rows="3" >Я хочу змінити текст</textarea>
+            <hr>
+            <input class="btn btn-primary" type="submit" value="Відправити">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Відмінити</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

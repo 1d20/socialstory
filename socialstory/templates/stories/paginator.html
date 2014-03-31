@@ -7,7 +7,7 @@
                 <input type="hidden" name="genres" value=
     "{% for ssg in selected_subgenres %}{{ ssg.id }},{% endfor %}"/>
                 <input type="hidden" name="page" value="{{ stories.previous_page_number }}"/>
-                <button type="submit" class="btn btn-link" aria-hidden="true">previous</button>
+                <button type="submit" class="btn btn-link" aria-hidden="true">Попередня</button>
             </form>
         </span>
     </li>
@@ -29,7 +29,7 @@
                 <input type="hidden" name="genres" value=
     "{% for ssg in selected_subgenres %}{{ ssg.id }},{% endfor %}"/>
                 <input type="hidden" name="page" value="{{ stories.next_page_number }}"/>
-                <button type="submit" class="btn btn-link" aria-hidden="true">next</button>
+                <button type="submit" class="btn btn-link" aria-hidden="true">Наступна</button>
             </form>
         </span>
     </li>

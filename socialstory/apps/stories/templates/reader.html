@@ -4,49 +4,69 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Social Story Reader</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"> -->
-  <link rel="stylesheet" href="/static/medium/css/reader.css">
-      <!--<script src="/static/medium/js/vendors/jquery.min.js"></script>-->
-  <script src='/static/medium/js/core/ssr.js'></script>
-  <script src='/static/medium/js/core/ssr.contents.js'></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="//ssr.herokuapp.com/css/loading.css">
+  <link rel="stylesheet" href="//ssr.herokuapp.com/css/reader.css">
+  <script src='//ssr.herokuapp.com/js/all.min.js'></script>
+    <script src='/static/js/core/ssr.notes.js'></script>
 </head>
 
-<body>
-  <div id="reader">
-    <div id="container" class="ssr-container">
-        <form action="/writer/comment/add/{{ branch.id }}/"  method="post" >
+<body class="outer">
+  <!--<div id="reader0">-->
+    <!--<div id="container0" class="ssr-container">-->
+        <!--<form action="/writer/comment/add/{{ branch.id }}/"  method="post" >-->
             {% csrf_token %}
-            Comment:
-            Private?<input name="private" type="checkbox">
-            <input type="text" size="1" name="paragraph_index" value="0">
-            <input type="text" size="1" name="first_char" value="10">
-            <input type="text" size="1" name="last_char" value="6">
-            <input type="text" size="10" name="content" value="comment">
-            <button type="submit">Send</button>
-        </form>
-        <form action="/writer/note/add/{{ branch.id }}/"  method="post" >
-            {% csrf_token %}
-            Note:
-            <input type="text" size="1" name="paragraph_index" value="0">
-            <input type="text" size="10" name="content">
-            <button type="submit">Send</button>
-        </form>
-        <form action="/writer/mark/add/{{ branch.id }}/"  method="post" >
-            {% csrf_token %}
-            Mark:
-            <input type="text" size="1" name="paragraph_index" value="0">
-            <button type="submit">Send</button>
-        </form>
+            <!--Comment:-->
+            <!--Private?<input name="private" type="checkbox">-->
+            <!--<input type="text" size="1" name="paragraph_index" value="0">-->
+            <!--<input type="text" size="1" name="first_char" value="10">-->
+            <!--<input type="text" size="1" name="last_char" value="6">-->
+            <!--<input type="text" size="10" name="content" value="comment">-->
+            <!--<button type="submit">Send</button>-->
+        <!--</form>-->
+        <!--<form action="/writer/note/add/{{ branch.id }}/"  method="post" >-->
+            <!--{% csrf_token %}-->
+            <!--Note:-->
+            <!--<input type="text" size="1" name="paragraph_index" value="0">-->
+            <!--<input type="text" size="10" name="content">-->
+            <!--<button type="submit">Send</button>-->
+        <!--</form>-->
+        <!--<form action="/writer/mark/add/{{ branch.id }}/"  method="post" >-->
+            <!--{% csrf_token %}-->
+            <!--Mark:-->
+            <!--<input type="text" size="1" name="paragraph_index" value="0">-->
+            <!--<button type="submit">Send</button>-->
+        <!--</form>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div id="reader" class="middle" data-branch-id="{{ branch.id }}">
+
+    <div id="progress-bar-outer" class="container outer">
+      <div class="middle">
+
+        <div class="inner">
+
+            <div class="main clearfix">
+              <div class="loading"></div>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div id="container" class="ssr-container"></div>
+
+    <div id="pager" class="container" style="text-align: center; display:none;">
+      <a class="btn btn-primary" href="#" data-pager-navigation-action="previous">Предыдущая</a>
+      <a class="btn btn-primary" href="#" data-pager-navigation-action="next">Следующая</a>
     </div>
   </div>
 
   <div id="content" style="display: none">
     {{ content|safe }}
   </div>
-
-  <script type="text/javascript">
-    SSR.initialize();
-  </script>
 
 </body>
 </html>
