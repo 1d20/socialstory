@@ -17,9 +17,9 @@ def index(request):
 @render_to('writer.html')
 def writer(request, user_id=1):
     count = 2
-    comments = Comments.objects.filter(user=request.user, like_writer=True)[:count]
-    notes = Notes.objects.filter(user=request.user)[:count]
-    marks = Marks.objects.filter(user=request.user)[:count]
+    comments = Comments.objects.filter(user_id=user_id, like_writer=True)[:count]
+    notes = Notes.objects.filter(user_id=user_id)[:count]
+    marks = Marks.objects.filter(user_id=user_id)[:count]
     res = {
         'writer': Writer.objects.filter(user_id=user_id)[0],
         'user_id': request.user.id,
