@@ -84,6 +84,7 @@ def all_comments(request):
                 'branch_title': c.branch.title,
                 'writer_name': c.user.username,
                 'writer_avatar': c.user.writer_user.picture.url,
+                'writer_id': c.user.id,
             })
 
     changes = []
@@ -98,6 +99,7 @@ def all_comments(request):
                 'branch_title': c.branch.title,
                 'writer_name': c.user.username,
                 'writer_avatar': c.user.writer_user.picture.url,
+                'writer_id': c.user.id,
             })
     res = {
         'show_path': 'messages/comments.html',
