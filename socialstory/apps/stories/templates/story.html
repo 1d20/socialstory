@@ -10,12 +10,18 @@
     <div class="row">
         <div class="col-lg-8">
             <h1 class="page-header">{{ branch.title }}
-                <small>
-                    {% for b in branch.story.story_version.all %}
-                        <a href="/stories/story/{{ b.id }}/">{{ b.title }}{% if branch.story.user.id != b.user.id %}*{%endif%}</a>&nbsp;&nbsp;&nbsp;
-                    {% endfor %}
-                </small>
                 <div class="btn-group">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Версії <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                          {% for b in branch.story.story_version.all %}
+
+                            <li class="{% if b.id == branch.id %}active{% endif %}"><a href="/stories/story/{{ b.id }}/">{{ b.title }}{% if branch.story.user.id != b.user.id %}*{%endif%}</a></li>
+                          {% endfor %}
+                      </ul>
+                    </div>
                     {% if favorite %}
                         <a class="btn btn-default" href="/stories/favorite/{{ branch.story.id }}/"><i class="fa fa-star-o"></i> Додати у вибрані</a>
                     {% endif %}
