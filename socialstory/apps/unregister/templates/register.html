@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Авторизація</title>
+    <title>Реєстрація</title>
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/static/bootstrap/css/signin.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <legend>Реєстрація</legend>
-        <form method="post" action="/acc/register/" enctype="multipart/form-data">
+    <div class="container">
+	<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" method="post" action="/acc/register/">
+          <fieldset>
+            <legend class="text-center">Реєстрація</legend>
             {% csrf_token %}
-            <table>{{ form.as_table }}</table>
+            {% if errors|length > 0 %}
+            <div class="alert alert-dismissable alert-danger">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              {{ errors }}
+            </div>
+            {% endif %}
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="username">Логін:</label>
+              <div class="col-md-8">
+                <input id="username" name="username" type="text" placeholder="Ім'я користувача" class="form-control">
+                <p class="help-block">Введіть не більше, ніж 30 символів.
+                    Використовуйте тільки літери латинського алфавіту і цифри.</p>
+              </div>
+            </div>
 
-            <button class="btn btn-primary" type="submit">Реєстрація</button>
-        </form>
- </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="password1">Пароль:</label>
+              <div class="col-md-8">
+                <input id="password1" name="password1" type="text" placeholder="Введіть пароль" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="password2">Повторіть пароль:</label>
+              <div class="col-md-8">
+                <input id="password2" name="password2" type="text" placeholder="Введіть той самий пароль, що і вище" class="form-control">
+              </div>
+            </div>
+
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">Реєстрація</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+	</div>
+</div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login
 from apps.unregister.forms import MyRegistrationForm
@@ -39,12 +40,14 @@ def logout(request):
 
 @render_to('register.html')
 def register_user(request):
+    errors = ''
     if request.method == 'POST':
         form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/acc/login/')
+        errors = 'Дані введені невірно. Введіть ще раз.'
     args={}
     args.update(csrf(request))
-    args['form'] = MyRegistrationForm()
+    args['errors'] = errors
     return args

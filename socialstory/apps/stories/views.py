@@ -51,7 +51,7 @@ def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=No
         stories = list(reversed(stories))
 
     stories = search_filter(stories, fitler_string)
-    paginator = Paginator(stories, 10)
+    paginator = Paginator(stories, 9)
     try:
         stories_list = paginator.page(page)
     except PageNotAnInteger:
@@ -64,7 +64,7 @@ def get_subgenres_and_stories(selected_genres='', sorted_by='-date_add', page=No
 @render_to('stories.html')
 def user_stories(request, user_id=1):
     ss = Story.objects.filter(user_id=user_id).all()
-    paginator = Paginator(ss, 10)
+    paginator = Paginator(ss, 9)
     try:
         stories_list = paginator.page(request.POST.get('page'))
     except PageNotAnInteger:
@@ -82,7 +82,7 @@ def user_stories(request, user_id=1):
 def user_fav_stories(request, user_id=1):
     wfs = WriterFavorite.objects.filter(user_id=user_id).all()
     ss = map(lambda wf: wf.story , wfs)
-    paginator = Paginator(ss, 10)
+    paginator = Paginator(ss, 9)
     try:
         stories_list = paginator.page(request.POST.get('page'))
     except PageNotAnInteger:
@@ -103,7 +103,7 @@ def user_trans_stories(request, user_id=1):
     for b in bs:
         if b.story not in ss:
             ss.append(b.story)
-    paginator = Paginator(ss, 10)
+    paginator = Paginator(ss, 9)
     try:
         stories_list = paginator.page(request.POST.get('page'))
     except PageNotAnInteger:

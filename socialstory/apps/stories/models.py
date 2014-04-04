@@ -41,6 +41,16 @@ class Branch(models.Model):
     poster = models.ImageField(upload_to='posters', default='posters/default.jpg')
     description = models.TextField()
     date_add = models.DateTimeField(verbose_name=u'Date', auto_now_add=True)
+
+    def pages(self):
+        pages = []
+        #pages.append(self.description)
+        #pages.append(self.description)
+        #pages.append(self.description)
+        pages.append(self.description[:120])
+        pages.append(self.description[121:240])
+        pages.append(self.description[241:360])
+        return pages
     class Meta:
         ordering = ['id']
     def __unicode__(self):

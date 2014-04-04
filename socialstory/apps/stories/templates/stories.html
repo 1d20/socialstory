@@ -2,6 +2,11 @@
 
 {% block title %}{{ title }}{% endblock %}
 
+{% block links %}
+        <link rel="stylesheet" type="text/css" href="//ssr.herokuapp.com/css/books/books.css">
+        <link rel="stylesheet" type="text/css" href="//ssr.herokuapp.com/css/books/comp.css">
+{% endblock %}
+
 {% block content  %}
 <div class="row">
     <div class="col-lg-2">
@@ -10,6 +15,7 @@
     <div class="col-lg-10">
         {% include 'stories/top_menu.html' %}
 
+        <div class="row">
         {{ selected_subgenres.push.0 }}
         {% for sg in selected_subgenres %}
         <div class="col-lg-2 alert alert-info">
@@ -23,34 +29,68 @@
         </div>
         <div class="col-lg-1"></div>
         {% endfor %}
-
-        <div class="fieldWrapper">
-            <div class="form-actions">
-                <table class="table table-striped">
-                    <th>Назва</th>
-                    <th>Автор</th>
-                    <th>Жанри</th>
-                    <th>Мови</th>
-                    <th>Рейтинг</th>
-                    <th>Дата</th>
-                    {% for story in stories.object_list %}
-                    <tr>
-                       <td><a href="/stories/story/{{ story.story_version.all.0.id }}/">{{ story.story_version.all|first }}</a></td>
-                       <td><a href="/writer/{{ story.user_id }}/">{{ story.user }}</a></td>
-                        <td>{{ story.genres.all|join:', ' }}</td>
-                        <td>{% for b in story.story_version.all %}
-                            <small>{{ b.language }}&nbsp;&nbsp;&nbsp;</small>
-                            {% endfor %}
-                        </td>
-                       <td>{{ story.rating }}({{ story.voteCount }})</td>
-                        <td>{{ story.date_add|date:"d.m.y h:i:s"|lower }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-
+        </div>
+        <div class="row">
+           <div class="col-md-12">
+            <ul id="bk-list" class="bk-list clearfix">
+                {% for story in stories.object_list %}
+                    <li>
+                      <div class="bk-book book-{% cycle '1' '3' %} bk-bookdefault" >
+                        <div class="bk-front">
+                          <div class="bk-cover" style="background-image:url({{ story.story_version.all.0.poster.url }})" >
+                            <h2>
+                            <span>{{ story.user }}</span>
+                            <span>{{ story.story_version.all|first }}</span>
+                            </h2>
+                          </div>
+                          <div class="bk-cover-back"></div>
+                        </div>
+                        <div class="bk-page">
+                          <div class="bk-content bk-content-current">
+                            <p>{{ story.story_version.all.0.pages.0 }}</p>
+                          </div>
+                          <div class="bk-content">
+                            <p>{{ story.story_version.all.0.pages.1 }}</p>
+                          </div>
+                            <div class="bk-content">
+                            <p>{{ story.story_version.all.0.pages.2 }}</p>
+                          </div>
+                        </div>
+                        <div class="bk-back">
+                          <p>{{ story.story_version.all.0.description|truncatechars:180 }}</p>
+                        </div>
+                        <div class="bk-right"></div>
+                        <div class="bk-left">
+                          <h2>
+                          <span>{{ story.user }}</span>
+                          <span>{{ story.story_version.all|first }}</span>
+                          </h2>
+                        </div>
+                        <div class="bk-top"></div>
+                        <div class="bk-bottom"></div>
+                      </div>
+                      <div class="bk-info">
+                        <button class="bk-bookback">Зворот</button>
+                        <button class="bk-bookview">Переглянути</button>
+                        <a href="/stories/story/{{ story.story_version.all.0.id }}/">Опис</a>
+                        <a href="/stories/read/{{ story.story_version.all.0.id }}/">Читати</a>
+                      </div>
+                    </li>
+                {% endfor %}
+            </ul>
+          </div>
+       </div>
+        <div>
             {% include 'stories/paginator.html' %}
-            </div>
         </div>
     </div>
 </div>
+
+<script src="//ssr.herokuapp.com/js/vendor/modernizr.custom.js"></script>
+<script src="//ssr.herokuapp.com/js/vendor/book1.js"></script>
+<script type="text/javascript">
+$(function() {
+Books.init();
+});
+</script>
 {% endblock %}

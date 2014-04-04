@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^stories/', include('apps.stories.urls')),
     url(r'^people/', include('apps.people.urls')),
     url(r'^message/', include('apps.messages.urls')),
+    url(r'^feedback/', include('apps.feedback.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

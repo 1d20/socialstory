@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'apps.stories',
     'apps.people',
     'apps.messages',
+    'apps.feedback',
 )
 
 REST_FRAMEWORK = {

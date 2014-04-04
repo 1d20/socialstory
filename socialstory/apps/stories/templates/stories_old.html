@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content  %}
+<div class="row">
+    <div class="col-lg-2">
+        {% include 'stories/left_menu.html' %}
+    </div>
+    <div class="col-lg-10">
+        {% include 'stories/top_menu.html' %}
+
+        {{ selected_subgenres.push.0 }}
+        {% for sg in selected_subgenres %}
+        <div class="col-lg-2 alert alert-info">
+            <form class="form-inline" role="form" action="/stories/all/"  method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="genres" value=
+    "{% for ssg in selected_subgenres %}{% ifnotequal ssg.id sg.id %}{{ ssg.id }},{% endifnotequal %}{% endfor %}"/>
+                {{ sg.title }}
+                <button type="submit" class="close" aria-hidden="true">&times;</button>
+            </form>
+        </div>
+        <div class="col-lg-1"></div>
+        {% endfor %}
+
+        <div class="fieldWrapper">
+            <div class="form-actions">
+                <table class="table table-striped">
+                    <th>Назва</th>
+                    <th>Автор</th>
+                    <th>Жанри</th>
+                    <th>Мови</th>
+                    <th>Рейтинг</th>
+                    <th>Дата</th>
+                    {% for story in stories.object_list %}
+                    <tr>
+                       <td><a href="/stories/story/{{ story.story_version.all.0.id }}/">{{ story.story_version.all|first }}</a></td>
+                       <td><a href="/writer/{{ story.user_id }}/">{{ story.user }}</a></td>
+                        <td>{{ story.genres.all|join:', ' }}</td>
+                        <td>{% for b in story.story_version.all %}
+                            <small>{{ b.language }}&nbsp;&nbsp;&nbsp;</small>
+                            {% endfor %}
+                        </td>
+                       <td>{{ story.rating }}({{ story.voteCount }})</td>
+                        <td>{{ story.date_add|date:"d.m.y h:i:s"|lower }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            {% include 'stories/paginator.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
