@@ -1,23 +1,151 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Авторизація</title>
-    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/bootstrap/css/signin.css" rel="stylesheet">
-</head>
-<body>
-<div class="container">
-
-      <form class="form-signin" method="post" action="/acc/auth/">
-        {% csrf_token %}
-        <h2 class="form-signin-heading">Введіть дані</h2>
-        <input type="text" class="form-control" placeholder="Логін" id="username" name="username" required autofocus>
-        <input type="password" class="form-control" placeholder="Пароль" id="password" name="password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Ввійти</button>
-        <br/>
-        <a href="/acc/register/">Ще не зареєстровані?</a>
-      </form>
-
- </div>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Твiй шлях до визнання | Social Story UA</title>
+		<meta name="description" content="Fullscreen Layout with Page Transitions" />
+		<meta name="keywords" content="fullscreen layout, boxes, responsive, page transitions, css transitions, jquery, portfolio, template" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="//ssr.herokuapp.com/css/login/component.css" />
+		<script src="//ssr.herokuapp.com/js/vendor/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div id="bl-main" class="bl-main">
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-about">Проект</h2>
+					</div>
+					<div class="bl-content">
+						<h2>Про цей проект</h2>
+						<p>Даний проект реалізується як дипломна робота студентів третього курсу (станом на початок 2014 року). Мета проекту: об'єднати творчих людей з жагою до літератури.</p>
+						<p>Тут ви можете спілкуватись з друзями, комментувати чужі твори та пропонувати виправлення до авторських текстів, а також пропонувати переклади до відомих та перспективних творів.</p>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section id="bl-work-section">
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-works">Вхід</h2>
+					</div>
+					<div class="bl-content">
+						<h2>Увійти в свій аккаунт письменника</h2>
+						<form class="form-signin" method="post" action="/acc/auth/">
+					        {% csrf_token %}
+					        <input type="text" class="form-control" placeholder="Логін" id="username" name="username" required="" autofocus="">
+					        <input type="password" class="form-control" placeholder="Пароль" id="password" name="password" required="">
+					        <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+					        <br>
+					    </form>
+					    <p>
+					        <a href="/acc/register/">Ще не зареєстровані?</a>
+					    </p>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-blog">Можливості</h2>
+					</div>
+					<div class="bl-content">
+						<h2>Можливості</h2>
+						<p>Публічне читання літератури, перегляд історії написання книги, спілкування з інтелігентними людьми.</p>
+						<ul id="bl-work-items">
+							<li data-panel="panel-1"><a href="#"><img src="//ssr.herokuapp.com/image/login/1.jpg.png" /></a></li>
+							<li data-panel="panel-2"><a href="#"><img src="//ssr.herokuapp.com/image/login/2.jpg.png" /></a></li>
+							<li data-panel="panel-3"><a href="#"><img src="//ssr.herokuapp.com/image/login/3.jpg.png" /></a></li>
+							<li data-panel="panel-4"><a href="#"><img src="//ssr.herokuapp.com/image/login/4.jpg.png" /></a></li>
+						</ul>
+						<p>Іллюстрації зроблені з сайту <a href="http://socialstory.in.ua">Social Story</a></p>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-contact">Контакти</h2>
+					</div>
+					<div class="bl-content">
+						<h2>Будьте на зв'язку</h2>
+						<p>
+                            <a href="//vk.com/detonavomek" style="
+                            width: 218px;
+                            display: inline-block;
+                            padding: 0;
+                            ">
+                            <img src="http://cs619824.vk.me/v619824603/1c37/pgrd00UfTZI.jpg" style="
+                            height: 300px;
+                            display: inline-block;
+                            "><span style="
+                            display: inline-block;
+                            ">Адамiв Антон (Backend)</span>
+                            </a>
+                            <a href="https://vk.com/andrewdacenko" style="
+                            display: inline-block;
+                            width: 230px;
+                            ">
+                            <img src="https://pp.vk.me/c9718/u4043299/-6/x_2059c15c.jpg" style="
+                            height: 300px;
+                            "><span style="
+                            display: inline-block;
+                            ">Даценко Андрiй (Frontend)</span>
+                            </a>
+                        </p>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<!-- Panel items for the works -->
+				<div class="bl-panel-items" id="bl-panel-work-items">
+					<div data-panel="panel-1">
+						<div>
+							<img src="//ssr.herokuapp.com/image/login/1.jpg.png" />
+							<h3>Твій шлях до визнання</h3>
+							<p>Вітаємо! Сьогодні може розпочатися твій шлях до визнання у світовій літературі.
+                                Social Story - це не лише сервіс для власних нотаток, а й рушійна сила у світовому розповсюдженні
+                            сучасної художньої, наукової і технічної літератури, що допомагає авторам ділитися з суспільством власними надбаннями
+                            та вдосконалювати, виправляти та перекладати чужі друкописи.</p>
+						</div>
+					</div>
+					<div data-panel="panel-2">
+						<div>
+							<img src="//ssr.herokuapp.com/image/login/2.jpg.png" />
+							<h3>Велика бібліотека</h3>
+							<p>Сервіс пропонує літературу з великою різнованітністю жанрів. Заради зручності користування
+                            кожний твір має власну обкладинку та аннотацію, з якою ви можете легко та швидко ознайомитись
+                            переглядаючи список літератури.</p>
+                        </div>
+					</div>
+					<div data-panel="panel-3">
+						<div>
+							<img src="//ssr.herokuapp.com/image/login/3.jpg.png" />
+							<h3>Книжкоподібний рідер</h3>
+							<p>Універсальне програмне забезпечення для читання і коментування творів. З додаткових можливостей
+                            наявні: система нотаток та закладок. Також за допомогою цього переглядача ви можете моментально повідомити
+                            автора про помилки або неточності в тексті.</p>
+                        </div>
+					</div>
+					<div data-panel="panel-4">
+						<div>
+							<img src="//ssr.herokuapp.com/image/login/4.jpg.png" />
+						    <h3>Система публічного читання літератури</h3>
+							<p>Кожен уривок тексту може мати власну гілку обговорень та дискусій. Всі завірені автором коментарі
+                            наявні при читанні в універсальному рідері.</p>
+                        </div>
+					</div>
+					<nav>
+						<span class="bl-next-work">&gt; Далі</span>
+						<span class="bl-icon bl-icon-close"></span>
+					</nav>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="//ssr.herokuapp.comjs/login/boxlayout.js"></script>
+		<script>
+			$(function() {
+				Boxlayout.init();
+			});
+		</script>
+	</body>
 </html>
