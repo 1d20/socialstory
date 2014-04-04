@@ -47,9 +47,9 @@ class Branch(models.Model):
         #pages.append(self.description)
         #pages.append(self.description)
         #pages.append(self.description)
-        pages.append(self.description[:120])
-        pages.append(self.description[121:240])
-        pages.append(self.description[241:360])
+        pages.append(self.description[:220])
+        pages.append(self.description[221:440])
+        pages.append(self.description[441:660])
         return pages
     class Meta:
         ordering = ['id']
