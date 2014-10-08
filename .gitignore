@@ -5,3 +5,4 @@ socialstory/ss.db
 socialstory/wsgi.py
 *.ini
 *.xml
+venv/*
