@@ -1,8 +1,5 @@
 source/settings.py
 *.pyc
-socialstory/media
-socialstory/ss.db
-socialstory/wsgi.py
 *.ini
 *.xml
 venv/*
