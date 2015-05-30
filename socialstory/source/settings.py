@@ -1,10 +1,5 @@
 # Django settings for socialstory project.
 
-#python manage.py dumpdata socialstory --indent=4 > ss.json
-#python manage.py reset socialstory
-#python manage.py loaddata ss.json
-#python manage.py
-
 import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -19,17 +14,6 @@ MANAGERS = ADMINS
 
 LOGIN_URL = '/acc/login/'
 LOGIN_REDIRECT_URL = '/acc/auth/'
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'socialstory',                      # Or path to database file if using sqlite3.
-#         'USER': 'Detonavomek',                      # Not used with sqlite3.
-#         'PASSWORD': '',                  # Not used with sqlite3.
-#         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -82,13 +66,9 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH, "static"),
 )
 
-# List of finder classes that know how to find static files in
-# various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
